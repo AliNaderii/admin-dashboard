@@ -14,10 +14,11 @@
       font-size: 20px;
       font-weight: 700;
       color: #6439ff;
+      text-decoration: none;
     }
   }
 
-  .center {
+  .bottom {
     padding-left: 10px;
 
     .link-container {
@@ -35,6 +36,7 @@
         align-items: center;
         gap: 15px;
         padding: 5px;
+        text-decoration: none;
         cursor: pointer;
 
         &:hover {
@@ -54,27 +56,33 @@
       }
     }
   }
+}
+
+// dark theme
+
+.sidebar.dark {
+  background-color: #121212;
+  border-right: 0.5px solid #333;
+
+  .top {
+    border-bottom: 1px solid #333;
+  }
 
   .bottom {
-    display: flex;
-    margin: 10px;
+    .link-container {
+      .title {
+        color: #ddd;
+      }
 
-    .theme {
-      width: 20px;
-      height: 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 5px;
-    }
+      .link {
+        &:hover {
+          background-color: #555;
+        }
 
-    .theme.white {
-      background-color: #fff;
-      border: 2px solid #888;
-    }
-
-    .theme.black {
-      background-color: #000;
-      border: 2px solid #000;
+        span {
+          color: #ccc;
+        }
+      }
     }
   }
 }

@@ -1,5 +1,7 @@
 // styles
 import './chart.scss';
+// tools
+import { useTheme } from '../../../hooks/useTheme';
 // recharts 
 import {
   AreaChart,
@@ -19,12 +21,13 @@ const data = [
   { name: "June", Total: 1700 },
 ];
 
-export default function Chart() {
+export default function Chart({ aspect, title }) {
+  const { theme } = useTheme();
 
   return (
-    <div className='chart'>
-      <div className="title">Last 6 Month (Revenue)</div>
-      <ResponsiveContainer width="100%" aspect={ 2 / 1 }>
+    <div className={ theme === 'light' ? 'chart' : 'chart dark' }>
+      <div className="title">{ title }</div>
+      <ResponsiveContainer width="100%" aspect={ aspect }>
         <AreaChart
           width={ 730 }
           height={ 250 }

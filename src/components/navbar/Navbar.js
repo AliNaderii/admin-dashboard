@@ -1,5 +1,7 @@
 // styles
 import './navbar.scss';
+// tools
+import { useTheme } from '../../hooks/useTheme';
 // icons
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -10,8 +12,15 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
 export default function Navbar() {
+  const { dispatch } = useTheme();
+  const { theme } = useTheme();
+
+  const changeTheme = () => {
+    dispatch({ type: 'CHANGE_THEME' });
+  };
+
   return (
-    <div className='navbar'>
+    <div className={ theme === 'light' ? 'navbar' : 'navbar dark' }>
       <div className="wrapper">
         <div className="search">
           <input type="text" placeholder='Search...' />
@@ -24,7 +33,7 @@ export default function Navbar() {
             English
           </div>
 
-          <div className="item">
+          <div className="item" onClick={ changeTheme }>
             <DarkModeOutlinedIcon className='icon' />
           </div>
 
@@ -48,7 +57,7 @@ export default function Navbar() {
 
 
           <div className="item">
-            <img src="avatar/harsha.jpg" alt="avatar" className="avatar" />
+            <img src="/avatar/harsha.jpg" alt="avatar" className="avatar" />
           </div>
 
         </div>

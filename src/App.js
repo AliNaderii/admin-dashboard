@@ -6,40 +6,45 @@ import Login from './pages/login/Login';
 import List from './pages/list/List';
 import New from './pages/new/New';
 import Single from './pages/single/Single';
+// form inputs data
+import { userInputs, productInputs } from './formSource';
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          {/* <Route path='/'>
+          <Route path='/'>
             <Route index element={ <Home /> } />
             <Route path='login' element={ <Login /> } />
 
             <Route path='users'>
-              <Route index element={ <List /> } />
+              <Route
+                index
+                element={ <List title='Users' addNewLink='/users/new' /> }
+              />
+              <Route
+                path='new'
+                element={ <New inputs={ userInputs } title='Add new user' /> }
+              />
               <Route path=':userId' element={ <Single /> } />
-              <Route path='new' element={ <New /> } />
             </Route>
 
             <Route path='products'>
-              <Route index element={ <List /> } />
+              <Route
+                index
+                element={ <List title='Products' addNewLink='/products/new' /> }
+              />
+              <Route
+                path='new'
+                element={ <New inputs={ productInputs } title='Add new product' /> }
+              />
               <Route path=':productId' element={ <Single /> } />
-              <Route path='new' element={ <New /> } />
             </Route>
-          </Route> */}
-
-          <Route path='/' element={ <Home /> } />
-          <Route path='/login' element={ <Login /> } />
-          <Route path='/users' element={ <List /> } />
-          <Route path='/users/:id' element={ <Single /> } />
-          <Route path='/users/new' element={ <New /> } />
-          <Route path='/products' element={ <List /> } />
-          <Route path='/products/:id' element={ <Single /> } />
-          <Route path='/products/new' element={ <New /> } />
+          </Route>
         </Routes>
       </Router>
-    </div>
+    </div >
   );
 }
 

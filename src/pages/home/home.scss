@@ -20,12 +20,27 @@
       box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
       padding: 20px;
       margin: 20px;
+      border-radius: 10px;
 
       .table-title {
-        font-weight: 500;
+        font-weight: 600;
         color: gray;
         margin-bottom: 15px;
       }
+    }
+  }
+}
+
+// dark theme
+
+.home.dark {
+  background-color: #000;
+
+  .table-container {
+    -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
+    .table-title {
+      color: #ddd;
     }
   }
 }

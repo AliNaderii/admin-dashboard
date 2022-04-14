@@ -1,5 +1,7 @@
 // styles
 import './featured.scss';
+// tools
+import { useTheme } from '../../../hooks/useTheme';
 // icons
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -9,9 +11,10 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function Featured() {
+  const { theme } = useTheme();
 
   return (
-    <div className='featured'>
+    <div className={ theme === 'light' ? 'featured' : 'featured dark' }>
 
       <div className="top">
         <span className='title'>Total Revenue</span>

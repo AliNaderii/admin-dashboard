@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  width: 100%;
+
+  .list-container {
+    flex: 6;
+  }
+}
+
+.list.dark {
+  background-color: #121212;
+}

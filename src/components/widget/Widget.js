@@ -1,5 +1,7 @@
 // styles
 import './widget.scss';
+// tools
+import { useTheme } from '../../hooks/useTheme';
 // icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -8,6 +10,8 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
 export default function Widget({ type }) {
+  const { theme } = useTheme();
+
   let widgetInfo = {
     title: '',
     stat: null,
@@ -77,7 +81,7 @@ export default function Widget({ type }) {
   }
 
   return (
-    <div className='widget'>
+    <div className={ theme === 'light' ? 'widget' : 'widget dark' }>
 
       <div className="left">
         <span className="title">{ widgetInfo.title }</span>

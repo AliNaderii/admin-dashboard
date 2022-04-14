@@ -1,5 +1,8 @@
 // styles
 import './sidebar.scss';
+// tools
+import { Link } from 'react-router-dom';
+import { useTheme } from '../../hooks/useTheme';
 // icons
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
@@ -15,31 +18,33 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Sidebar() {
+  const { theme } = useTheme();
+
   return (
-    <div className='sidebar'>
+    <div className={ theme === 'light' ? 'sidebar' : 'sidebar dark' }>
 
       <div className="top">
-        <span className="logo">myAdmin</span>
+        <Link to='/' className="logo">myAdmin</Link >
       </div>
 
-      <div className="center">
+      <div className="bottom">
         <ul className='link-container'>
           <p className="title">MAIN</p>
-          <li className='link'>
+          <Link to='/' className='link'>
             <DashboardIcon className='icon' />
             <span>Dashboard</span>
-          </li>
+          </Link>
 
           <p className="title">LISTS</p>
-          <li className='link'>
+          <Link to='/users' className='link'>
             <GroupIcon className='icon' />
             <span>Users</span>
-          </li>
+          </Link>
 
-          <li className='link'>
+          <Link to='/products' className='link'>
             <CategoryIcon className='icon' />
             <span>Products</span>
-          </li>
+          </Link>
 
           <li className='link'>
             <StoreIcon className='icon' />
@@ -91,12 +96,6 @@ export default function Sidebar() {
 
         </ul>
       </div>
-
-      <div className="bottom">
-        <div className="theme black"></div>
-        <div className="theme white"></div>
-      </div>
-
     </div>
   );
 }

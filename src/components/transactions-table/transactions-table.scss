@@ -1,4 +1,8 @@
 .table {
+  .table-cell.head {
+    font-weight: 600;
+  }
+
   .cell-wrapper {
     display: flex;
     align-items: center;
@@ -24,5 +28,18 @@
       color: goldenrod;
       background-color: rgba(189, 189, 3, 0.103);
     }
+  }
+}
+
+// dark theme
+.table.dark {
+  background-color: #121212;
+
+  .table-cell.head {
+    color: #aaa;
+  }
+
+  .table-cell {
+    color: #ddd;
   }
 }

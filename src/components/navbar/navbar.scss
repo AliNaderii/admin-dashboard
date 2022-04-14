@@ -63,3 +63,30 @@
     }
   }
 }
+
+// dark theme
+
+.navbar.dark {
+  background-color: #121212;
+  border-bottom: 0.5px solid #333;
+
+  .wrapper {
+    .search {
+      border: 1px solid #777;
+      color: #ccc;
+
+      input {
+        color: #ccc;
+      }
+    }
+  }
+
+  .items-container {
+    .item {
+      color: #ddd;
+      .icon {
+        color: #ddd;
+      }
+    }
+  }
+}

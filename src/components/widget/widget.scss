@@ -37,6 +37,7 @@
     .percent {
       display: flex;
       align-items: center;
+      font-weight: 700;
     }
 
     .percent.up {
@@ -47,6 +48,27 @@
       align-self: flex-end;
       padding: 5px;
       border-radius: 5px;
+    }
+  }
+}
+
+// dark theme
+.widget.dark {
+  background-color: #121212;
+  -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
+
+  .left {
+    .title {
+      color: #ddd;
+    }
+
+    .stat {
+      color: #ccc;
+    }
+
+    .link {
+      color: #ccc;
     }
   }
 }

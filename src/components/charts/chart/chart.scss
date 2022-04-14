@@ -4,12 +4,30 @@
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
   color: gray;
+  border-radius: 10px;
 
   .title {
     margin-bottom: 20px;
+    font-weight: 700;
   }
 
   .chart-grid {
     stroke: rgb(228, 225, 225);
+  }
+}
+
+// dark theme
+
+.chart.dark {
+  background-color: #121212;
+  -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
+
+  .title {
+    color: #ddd;
+  }
+
+  .chart-grid {
+    opacity: 0.3;
   }
 }

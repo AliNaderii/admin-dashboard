@@ -1,16 +1,20 @@
 // styles
 import './home.scss';
+// tools
+import { useTheme } from '../../hooks/useTheme';
 // components
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Widget from '../../components/widget/Widget';
 import Chart from '../../components/charts/chart/Chart';
 import Featured from '../../components/charts/featured/Featured';
-import TransactionsTable from '../../components/orders-table/TransactionsTable';
+import TransactionsTable from '../../components/transactions-table/TransactionsTable';
 
 export default function Home() {
+  const { theme } = useTheme();
+
   return (
-    <div className='home'>
+    <div className={ theme === 'light' ? 'home' : 'home dark' }>
       <Sidebar />
       <div className="home-container">
         <Navbar />
@@ -23,10 +27,10 @@ export default function Home() {
 
         <div className="charts-container">
           <Featured />
-          <Chart />
+          <Chart aspect={ 2 / 1 } title='Last 6 Month (Revenue)' />
         </div>
 
-        <div className="table-container">
+        <div className='table-container'>
           <div className="table-title">Latest Transactions</div>
           <TransactionsTable />
         </div>

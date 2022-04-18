@@ -1,104 +1,157 @@
-.datatable {
-  height: 500px;
-  padding: 20px;
+$primaryColor: #605865;
+$secondaryColor: #f6f6f8;
+$bgColor: #e3e3e3;
+$accentColor: #c60021;
 
-  .datatable-title {
-    width: 100%;
-    font-size: 24px;
-    color: gray;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    .link {
-      text-decoration: none;
-      color: green;
-      font-size: 16px;
-      font-weight: 700;
-      border: 1px solid green;
-      padding: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  }
-
-  .img-cell {
-    display: flex;
-    align-items: center;
-
-    .img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 20px;
-    }
-  }
-
-  .status-cell {
-    padding: 5px;
+  .add-btn {
+    text-decoration: none;
     border-radius: 5px;
-    font-weight: 600;
+    background-color: $primaryColor;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 15px;
+    color: $bgColor;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-    &.active {
-      background-color: rgba(0, 128, 0, 0.05);
-      color: green;
-    }
-    &.pending {
-      background-color: rgba(255, 217, 0, 0.05);
-      color: goldenrod;
-    }
-    &.passive {
-      background-color: rgba(255, 0, 0, 0.05);
-      color: crimson;
-    }
-  }
-
-  .cell-action {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    .view-button {
-      padding: 2px 5px;
-      border-radius: 5px;
-      color: darkblue;
-      border: 1px solid rgba(0, 0, 139, 0.596);
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .delete-button {
-      padding: 2px 5px;
-      border-radius: 5px;
-      color: crimson;
-      border: 1px solid rgba(220, 20, 60, 0.6);
-      font-weight: 700;
-      cursor: pointer;
+    &:hover {
+      background-color: $accentColor;
     }
   }
 }
 
-.datatable.dark {
-  background-color: #121212;
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+  font-weight: 600;
 
-  .datatable-title {
-    color: #ddd;
-  }
+  thead {
+    background-color: $accentColor;
+    text-align: left;
+    color: $secondaryColor;
+    height: 70px;
 
-  .datagrid {
-    color: #ddd;
+    th {
+      padding: 12px 25px;
 
-    input {
-      color: red;
+      &:nth-child(1) {
+        border-top-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 10px;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
     }
   }
 
-  .cell-action {
-    .view-button {
-      border: 1px solid #7451f8;
-      color: #7451f8;
+  tbody {
+    tr {
+      border-bottom: thin solid $primaryColor;
+
+      &:nth-of-type(even) {
+        background-color: $bgColor;
+      }
+    }
+
+    td {
+      padding: 12px 25px;
+    }
+  }
+
+  .username-cell {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  .active,
+  .passive {
+    padding: 2px 4px;
+    border-radius: 5px;
+    color: $secondaryColor;
+    font-weight: 600;
+  }
+
+  .active {
+    background-color: rgba(86, 240, 0, 0.3);
+    color: #246500;
+  }
+
+  .passive {
+    background-color: #c6002130;
+    color: $accentColor;
+  }
+
+  .action-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .action-btn {
+      text-decoration: none;
+      border: none;
+      background-color: $secondaryColor;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      color: $accentColor;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $accentColor;
+        color: $secondaryColor;
+      }
+    }
+  }
+}
+
+.pagination-container {
+  margin-top: 15px;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  .pagination-btn {
+    border: none;
+    background-color: $primaryColor;
+    color: $bgColor;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    &:hover {
+      background-color: $accentColor;
     }
   }
 }

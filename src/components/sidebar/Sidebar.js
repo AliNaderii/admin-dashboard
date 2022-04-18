@@ -3,22 +3,31 @@ import './sidebar.scss';
 // tools
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
+import { useAuth } from '../../hooks/useAuth';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 // icons
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupIcon from '@mui/icons-material/Group';
-import CategoryIcon from '@mui/icons-material/Category';
-import StoreIcon from '@mui/icons-material/Store';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
-import SettingsIcon from '@mui/icons-material/Settings';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import LogoutIcon from '@mui/icons-material/Logout';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
+import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import HealthAndSafetyOutlinedIcon from '@mui/icons-material/HealthAndSafetyOutlined';
+import SystemUpdateAltOutlinedIcon from '@mui/icons-material/SystemUpdateAltOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 export default function Sidebar() {
   const { theme } = useTheme();
+  const { dispatch } = useAuth();
+
+  const logout = () => {
+    signOut(auth);
+    dispatch({ type: 'LOGOUT' });
+  };
 
   return (
     <div className={ theme === 'light' ? 'sidebar' : 'sidebar dark' }>
@@ -31,66 +40,66 @@ export default function Sidebar() {
         <ul className='link-container'>
           <p className="title">MAIN</p>
           <Link to='/' className='link'>
-            <DashboardIcon className='icon' />
+            <DashboardOutlinedIcon className='icon' />
             <span>Dashboard</span>
           </Link>
 
           <p className="title">LISTS</p>
           <Link to='/users' className='link'>
-            <GroupIcon className='icon' />
+            <GroupOutlinedIcon className='icon' />
             <span>Users</span>
           </Link>
 
           <Link to='/products' className='link'>
-            <CategoryIcon className='icon' />
+            <CategoryOutlinedIcon className='icon' />
             <span>Products</span>
           </Link>
 
           <li className='link'>
-            <StoreIcon className='icon' />
+            <StoreOutlinedIcon className='icon' />
             <span>Orders</span>
           </li>
 
           <li className='link'>
-            <LocalShippingIcon className='icon' />
+            <LocalShippingOutlinedIcon className='icon' />
             <span>Delivery</span>
           </li>
 
           <p className="title">USEFUL</p>
           <li className='link'>
-            <QueryStatsIcon className='icon' />
+            <QueryStatsOutlinedIcon className='icon' />
             <span>Stats</span>
           </li>
 
           <li className='link'>
-            <NotificationsNoneIcon className='icon' />
+            <NotificationsNoneOutlinedIcon className='icon' />
             <span>Notifications</span>
           </li>
 
           <p className="title">SERVICE</p>
           <li className='link'>
-            <HealthAndSafetyIcon className='icon' />
+            <HealthAndSafetyOutlinedIcon className='icon' />
             <span>System Health</span>
           </li>
 
           <li className='link'>
-            <SystemUpdateAltIcon className='icon' />
+            <SystemUpdateAltOutlinedIcon className='icon' />
             <span>Logs</span>
           </li>
 
           <li className='link'>
-            <SettingsIcon className='icon' />
+            <SettingsOutlinedIcon className='icon' />
             <span>Settings</span>
           </li>
 
           <p className="title">USER</p>
           <li className='link'>
-            <AccountBoxIcon className='icon' />
+            <AccountBoxOutlinedIcon className='icon' />
             <span>Profile</span>
           </li>
 
-          <li className='link'>
-            <LogoutIcon className='icon' />
+          <li className='link' onClick={ logout }>
+            <LogoutOutlinedIcon className='icon' />
             <span>Logout</span>
           </li>
 

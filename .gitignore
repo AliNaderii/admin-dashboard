@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/src/components/transactions-table/Checkbox.js
+/src/components/transactions-table/FilteredTransactionsTable.js
+/src/components/transactions-table/ColumnFilter.js
+/src/components/transactions-table/GlobalFilter.js
+/src/components/transactions-table/PaginatedTransactionsTable.js
+/src/components/transactions-table/RowSelection.js
+/src/components/transactions-table/SortedTransactionsTable.js

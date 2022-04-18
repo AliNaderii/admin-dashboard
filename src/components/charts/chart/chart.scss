@@ -1,18 +1,25 @@
+$primaryColor: #605865;
+$secondaryColor: #f6f6f8;
+$bgColor: #e3e3e3;
+$accentColor: #c60021;
+
 .chart {
   flex: 4;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
-  color: gray;
+  color: $accentColor;
   border-radius: 10px;
+  background-color: $secondaryColor;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   .title {
     margin-bottom: 20px;
     font-weight: 700;
+    color: $primaryColor;
   }
 
   .chart-grid {
-    stroke: rgb(228, 225, 225);
+    stroke: $bgColor;
   }
 }
 

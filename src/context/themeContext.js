@@ -17,8 +17,6 @@ export const ThemeContextProvider = ({ children }) => {
     theme: 'light'
   });
 
-  console.log(state);
-
   return (
     <themeContext.Provider value={ { ...state, dispatch } }>
       { children }

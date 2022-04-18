@@ -1,23 +1,19 @@
+$primaryColor: #605865;
+$secondaryColor: #f6f6f8;
+$bgColor: #e3e3e3;
+$accentColor: #c60021;
+
 .featured {
   flex: 2;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
   border-radius: 10px;
+  background-color: $secondaryColor;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   .title {
     font-weight: 700;
-    color: #999;
-  }
-
-  .top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .icon {
-      color: #555;
-    }
+    color: $primaryColor;
   }
 
   .bottom {
@@ -44,10 +40,11 @@
 
       .amount {
         font-size: 25px;
+        font-weight: 700;
       }
 
       .text {
-        color: #555;
+        color: $primaryColor;
         font-size: 14px;
         font-weight: 600;
         text-align: center;
@@ -72,7 +69,7 @@
           display: flex;
           align-items: center;
           gap: 5px;
-          font-weight: 700;
+          font-weight: 600;
 
           &.up {
             color: green;

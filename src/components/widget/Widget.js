@@ -2,6 +2,7 @@
 import './widget.scss';
 // tools
 import { useTheme } from '../../hooks/useTheme';
+import { Link } from 'react-router-dom';
 // icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -49,7 +50,7 @@ export default function Widget({ type }) {
       break;
 
     case 'earning':
-      widgetInfo.title = 'ORDERS';
+      widgetInfo.title = 'EARNINGS';
       widgetInfo.stat = 250;
       widgetInfo.isMoney = true;
       widgetInfo.link = 'View net earnings';
@@ -88,7 +89,9 @@ export default function Widget({ type }) {
         <span className="stat">
           { widgetInfo.isMoney && '$' }{ widgetInfo.stat }
         </span>
-        <a href='#hello' className="link">{ widgetInfo.link }</a>
+        <Link to='/' className="link">
+          { widgetInfo.link }
+        </Link>
       </div>
 
       <div className="right">

@@ -3,12 +3,12 @@ import './featured.scss';
 // tools
 import { useTheme } from '../../../hooks/useTheme';
 // icons
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 // react-circular-progressbar
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { buildStyles } from 'react-circular-progressbar';
 
 export default function Featured() {
   const { theme } = useTheme();
@@ -16,14 +16,21 @@ export default function Featured() {
   return (
     <div className={ theme === 'light' ? 'featured' : 'featured dark' }>
 
-      <div className="top">
+      <div>
         <span className='title'>Total Revenue</span>
-        <MoreVertIcon className='icon' />
       </div>
 
       <div className="bottom">
         <div className="progress">
-          <CircularProgressbar value={ 70 } text={ '70%' } />
+          <CircularProgressbar
+            value={ 70 }
+            text={ '70%' }
+            styles={ buildStyles({
+              textColor: '#c60021',
+              pathColor: '#c60021'
+
+            }) }
+          />
         </div>
 
         <div className="sales-info">

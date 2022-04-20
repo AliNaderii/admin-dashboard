@@ -12,10 +12,11 @@ const deleteCustomer = async (id) => {
 
   await deleteDoc(customerRef);
 
+
 };
 
 
-const dataTableColumns = [
+const customersTableColumns = [
   {
     Header: 'Name',
     accessor: 'fullName',
@@ -71,4 +72,4 @@ const dataTableColumns = [
   },
 ];
 
-export default dataTableColumns;
+export default customersTableColumns;

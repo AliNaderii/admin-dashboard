@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBeFPiy4gB-y-BM-xLNXtR4FaOXd3p_9jc',
@@ -15,7 +16,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // init service
 const db = getFirestore(app);
+export const storage = getStorage(app);
 export const auth = getAuth();
 // collection ref
-export const colRef = collection(db, 'users');
+export const colRef = collection(db, 'latest-transactions');
+export const customersRef = collection(db, 'customers');
+export const productsRef = collection(db, 'products');
 

@@ -33,7 +33,7 @@ $accentColor: #c60021;
         width: 350px;
         height: 350px;
         border-radius: 50%;
-        object-fit: cover;
+        object-fit: fill;
       }
     }
 
@@ -88,8 +88,24 @@ $accentColor: #c60021;
           font-weight: 600;
           font-size: 14px;
 
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+
           &::placeholder {
             color: #60586595;
+            font-weight: 600;
+          }
+        }
+
+        &.select {
+          select {
+            padding: 5px;
+            outline: none;
+            width: 95%;
+            color: $primaryColor;
             font-weight: 600;
           }
         }

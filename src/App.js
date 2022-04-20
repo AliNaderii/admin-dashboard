@@ -10,7 +10,13 @@ import Single from './pages/single/Single';
 import Sidebar from './components/sidebar/Sidebar';
 import Navbar from './components/navbar/Navbar';
 // form inputs data
-import { userInputs, productInputs } from './formSource';
+import { userInputs, customerInitialState, productInputs, productInitialState } from './formSource';
+// firebase tools
+import { customersRef } from './firebase';
+import { productsRef } from './firebase';
+// table columns
+import customersTableColumns from './assets/table-columns/customersTableColumns';
+import productsTableColumns from './assets/table-columns/productsTableColumns';
 
 function App() {
   const { user } = useAuth();
@@ -37,12 +43,18 @@ function App() {
               />
               <Route path='login' element={ <Login /> } />
 
-              <Route path='users'>
+              <Route path='customers'>
                 <Route
                   index
                   element={
                     <CheckAuth>
-                      <List title='Users' addNewLink='/users/new' />
+                      <List
+                        addNewLink='/customers/new'
+                        linkText='Add new customer'
+                        databaseRef={ customersRef }
+                        tableTitle='Customers'
+                        tableColumns={ customersTableColumns }
+                      />
                     </CheckAuth>
                   }
                 />
@@ -50,7 +62,12 @@ function App() {
                   path='new'
                   element={
                     <CheckAuth>
-                      <New inputs={ userInputs } title='Add new user' />
+                      <New
+                        formInputFields={ userInputs }
+                        initialState={ customerInitialState }
+                        title='Add new user'
+                        databaseRef={ customersRef }
+                      />
                     </CheckAuth>
                   }
                 />
@@ -69,7 +86,13 @@ function App() {
                   index
                   element={
                     <CheckAuth>
-                      <List title='Products' addNewLink='/products/new' />
+                      <List
+                        addNewLink='/products/new'
+                        linkText='Add new product'
+                        databaseRef={ productsRef }
+                        tableTitle='Products'
+                        tableColumns={ productsTableColumns }
+                      />
                     </CheckAuth>
                   }
                 />
@@ -77,7 +100,12 @@ function App() {
                   path='new'
                   element={
                     <CheckAuth>
-                      <New inputs={ productInputs } title='Add new product' />
+                      <New
+                        formInputFields={ productInputs }
+                        initialState={ productInitialState }
+                        title='Add new product'
+                        databaseRef={ productsRef }
+                      />
                     </CheckAuth>
                   }
                 />

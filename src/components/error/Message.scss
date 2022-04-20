@@ -1,0 +1,30 @@
+$primaryColor: #605865;
+$secondaryColor: #f6f6f8;
+$bgColor: #e3e3e3;
+$accentColor: #c60021;
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+
+  &.error {
+    color: $accentColor;
+    background-color: #c6002130;
+    border: 2px solid $accentColor;
+  }
+
+  &.success {
+    background-color: rgba(86, 240, 0, 0.3);
+    color: #246500;
+  }
+
+  &.pending {
+    background-color: $primaryColor;
+    color: $secondaryColor;
+  }
+}

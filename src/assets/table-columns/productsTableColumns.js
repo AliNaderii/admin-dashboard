@@ -1,51 +1,49 @@
 // tools
 import { Link } from 'react-router-dom';
 // firebase tools
-import { customersRef } from '../../firebase';
+import { productsRef } from '../../firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 // icons
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-const deleteCustomer = async (id) => {
-  const customerRef = doc(customersRef, id);
+const deleteProduct = async (id) => {
+  const productRef = doc(productsRef, id);
 
-  await deleteDoc(customerRef);
-
+  await deleteDoc(productRef);
 };
 
 
-const dataTableColumns = [
+const productsTableColumns = [
   {
     Header: 'Name',
-    accessor: 'fullName',
+    accessor: 'title',
     Cell: ({ row }) => (
       <div className="username-cell" >
         <img src={ row.original.photoUrl } alt="" />
-        <p>{ row.original.fullName }</p>
+        <p>{ row.original.title }</p>
       </div>
     )
   },
   {
-    Header: 'Email',
-    accessor: 'email'
+    Header: 'Category',
+    accessor: 'category'
   },
   {
-    Header: 'Phone Number',
-    accessor: 'phone'
-  },
-  {
-    Header: 'Location',
-    accessor: 'location'
+    Header: 'Price',
+    accessor: 'price',
+    Cell: ({ value }) => (
+      <span>${ value }</span>
+    )
   },
   {
     Header: 'Status',
-    accessor: 'status',
+    accessor: 'inStock',
     Cell: ({ row }) => (
       <span
-        className={ row.original.status || 'active' }
+        className={ Number(row.original.inStock) > 0 ? 'active' : 'passive' }
       >
-        active
+        { row.original.inStock }
       </span >
     )
   },
@@ -54,15 +52,15 @@ const dataTableColumns = [
     Cell: ({ row }) => (
       <div className='action-container'>
         <Link
-          to='/customers/single'
+          to='/products/single'
           className='action-btn info'
-          title='Customer info'>
+          title='Product info'>
           <FeedOutlinedIcon />
         </Link>
         <button
           className='action-btn delete'
-          title='Delete customer'
-          onClick={ () => deleteCustomer(row.original.id) }
+          title='Delete product'
+          onClick={ () => deleteProduct(row.original.id) }
         >
           <DeleteOutlinedIcon />
         </button>
@@ -71,4 +69,4 @@ const dataTableColumns = [
   },
 ];
 
-export default dataTableColumns;
+export default productsTableColumns;

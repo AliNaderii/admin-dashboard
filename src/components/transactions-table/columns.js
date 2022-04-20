@@ -1,3 +1,5 @@
+import format from "date-fns/format";
+
 export const COLUMNS = [
   {
     Header: 'Tracking ID',
@@ -24,10 +26,20 @@ export const COLUMNS = [
   {
     Header: 'Date',
     accessor: 'date',
+    Cell: ({ value }) => {
+      const date = value.toDate();
+      const formated = format(date, 'PP');
+      return (
+        <span>{ formated }</span>
+      );
+    }
   },
   {
-    Header: 'Amount',
-    accessor: 'amount',
+    Header: 'Cost',
+    accessor: 'cost',
+    Cell: ({ value }) => (
+      <span>${ value }</span>
+    )
   },
   {
     Header: 'Payment Method',

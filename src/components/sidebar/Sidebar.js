@@ -45,9 +45,9 @@ export default function Sidebar() {
           </Link>
 
           <p className="title">LISTS</p>
-          <Link to='/users' className='link'>
+          <Link to='/customers' className='link'>
             <GroupOutlinedIcon className='icon' />
-            <span>Users</span>
+            <span>Customers</span>
           </Link>
 
           <Link to='/products' className='link'>

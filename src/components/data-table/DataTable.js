@@ -1,6 +1,7 @@
 // tools
 import { useMemo } from "react";
 import { useTable, useGlobalFilter, useSortBy, usePagination } from "react-table";
+import { Link } from "react-router-dom";
 // styles && components
 import './data-table.scss';
 import FilterInput from "./FilterInput";
@@ -8,7 +9,8 @@ import FilterInput from "./FilterInput";
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
-export default function DataTable({ tableData, tableColumns
+export default function DataTable({
+  tableData, tableColumns, addNewLink, linkText
 }) {
   const columns = useMemo(() => tableColumns, [tableColumns]);
   const data = useMemo(() => tableData, [tableData]);
@@ -37,6 +39,11 @@ export default function DataTable({ tableData, tableColumns
     <>
       <div className="top">
         <FilterInput filter={ globalFilter } setFilter={ setGlobalFilter } />
+        <Link
+          to={ addNewLink }
+          className='add-btn'>
+          { linkText }
+        </Link>
       </div>
 
       <>

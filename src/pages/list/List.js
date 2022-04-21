@@ -13,13 +13,11 @@ import Spinner from '../../components/spinner/Spinner';
 export default function List(props) {
   const { theme } = useTheme();
   const [tableData, setTableData] = useState([]);
-  const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
   const getTableData = useCallback(
     () => {
       setError(false);
-      setIsPending(true);
       try {
         onSnapshot(props.databaseRef, (snapshot) => {
           let fetchedData = [];
@@ -28,12 +26,10 @@ export default function List(props) {
           );
           setTableData([...fetchedData]);
         });
-        setIsPending(false);
       }
       catch (err) {
         console.log(err.message);
         setError(err.message);
-        setIsPending(false);
       }
     }, [props.databaseRef]);
 
@@ -48,7 +44,7 @@ export default function List(props) {
       <div className="table-container">
         <h2 className="table-title">{ props.tableTitle }</h2>
 
-        { isPending && <Spinner /> }
+        { tableData.length === 0 && <Spinner /> }
         {
           tableData.length !== 0 &&
           <DataTable tableData={ tableData } { ...props } />

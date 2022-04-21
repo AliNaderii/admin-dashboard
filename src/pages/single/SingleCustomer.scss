@@ -9,20 +9,14 @@ $accentColor: #c60021;
   min-height: 100vh;
   padding: 20px;
 
-  .top {
-    display: flex;
-    gap: 30px;
-    background-color: $bgColor;
-    border-top-left-radius: 10px;
-
     .info-card {
       position: relative;
-      flex: 2;
-      padding: 25px;
+      padding: 20px;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
       border-radius: 10px;
       background-color: $secondaryColor;
+      margin-bottom: 15px;
 
       .title {
         font-weight: 700;
@@ -40,30 +34,46 @@ $accentColor: #c60021;
         border-radius: 0 10px 0 0;
         background-color: #c6002130;
         color: $accentColor;
-        width: 50px;
+        width: 100px;
         font-weight: 700;
+        transition: all 0.3s ease;
         cursor: pointer;
+
+        &:hover {
+          color: $secondaryColor;
+          background-color: $accentColor;
+        }
       }
 
       .info-details {
         display: flex;
-        align-items: center;
         gap: 30px;
+        align-items: center;
         margin-top: 15px;
 
         .info-img {
-          flex: 1;
+          flex: 2;
 
           img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 100%;
+            border-radius: 10px;
+            object-fit: fill;
           }
         }
 
         .info-text {
+          list-style-type: none;
           flex: 2;
+          flex-wrap: wrap;
+          gap: 20px;
+
+          ul {
+            margin-top:20px;
+            list-style-type: none;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+          }
 
           p {
             color: $primaryColor;
@@ -80,28 +90,28 @@ $accentColor: #c60021;
     }
 
     .user-chart {
-      flex: 3;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
       border-radius: 10px;
     }
-  }
 
-  .bottom {
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    .table-container {
+      padding: 20px;
+      margin-top: 20px;
+      background-color: $secondaryColor;
+      border-radius: 10px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    background-color: $secondaryColor;
-
-    .title {
-      font-weight: 700;
-      color: $primaryColor;
-      margin-bottom: 30px;
-      font-size: 20px;
-    }
+      border-radius: 10px;
+  
+      .title {
+        font-weight: 700;
+        color: $primaryColor;
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
   }
+
 }
 
 // dark theme

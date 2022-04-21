@@ -55,7 +55,7 @@ const customersTableColumns = [
     Cell: ({ row }) => (
       <div className='action-container'>
         <Link
-          to='/customers/single'
+          to={ `/customers/${row.original.id}` }
           className='action-btn info'
           title='Customer info'>
           <FeedOutlinedIcon />

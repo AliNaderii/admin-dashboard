@@ -52,7 +52,7 @@ const productsTableColumns = [
     Cell: ({ row }) => (
       <div className='action-container'>
         <Link
-          to='/products/single'
+          to={ `/products/${row.original.id}` }
           className='action-btn info'
           title='Product info'>
           <FeedOutlinedIcon />

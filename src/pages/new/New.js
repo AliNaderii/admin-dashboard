@@ -137,7 +137,7 @@ export default function New({
                       onChange={ handleUserInputs }
                       onFocus={ () => setError('') }
                     >
-                      <option value=''>Select a category</option>
+                      <option value=''>Select a Category</option>
                       <option value='Computers'>Computers</option>
                       <option value='Home & Kitchen'>Home & Kitchen</option>
                       <option value='Sports and outdoor'>Sports and outdoor</option>

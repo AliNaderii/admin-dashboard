@@ -6,7 +6,8 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import List from './pages/list/List';
 import New from './pages/new/New';
-import Single from './pages/single/Single';
+import SingleCustomer from './pages/single/SingleCustomer';
+import SingleProduct from './pages/single/SingleProduct';
 import Sidebar from './components/sidebar/Sidebar';
 import Navbar from './components/navbar/Navbar';
 // form inputs data
@@ -29,7 +30,7 @@ function App() {
     <div style={ { display: 'flex', minHeight: '100vh' } }>
       <Router>
         <Sidebar />
-        <div style={ { flex: 8 } }>
+        <div style={ { flex: 8, backgroundColor: '#e3e3e3' } }>
           <Navbar />
           <Routes>
             <Route path='/'>
@@ -65,17 +66,17 @@ function App() {
                       <New
                         formInputFields={ userInputs }
                         initialState={ customerInitialState }
-                        title='Add new user'
+                        title='Add new customer'
                         databaseRef={ customersRef }
                       />
                     </CheckAuth>
                   }
                 />
                 <Route
-                  path=':userId'
+                  path=':customerId'
                   element={
                     <CheckAuth>
-                      <Single />
+                      <SingleCustomer />
                     </CheckAuth>
                   }
                 />
@@ -113,7 +114,7 @@ function App() {
                   path=':productId'
                   element={
                     <CheckAuth>
-                      <Single />
+                      <SingleProduct />
                     </CheckAuth>
                   }
                 />

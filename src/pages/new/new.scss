@@ -1,7 +1,4 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base'as *;
 
 .new-container {
   padding: 20px;
@@ -9,15 +6,15 @@ $accentColor: #c60021;
   border-top-left-radius: 10px;
   min-height: 100vh;
 
-  .new-title {
-    color: $primaryColor;
+  .title {
+    color: $textColor;
     margin-bottom: 20px;
     font-weight: 700;
     border-radius: 10px;
   }
 
   .form-container {
-    background-color: $secondaryColor;
+    background-color: $itemColor;
     display: flex;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -30,10 +27,10 @@ $accentColor: #c60021;
       text-align: center;
 
       img {
-        width: 350px;
-        height: 350px;
+        width: 250px;
+        height: 250px;
         border-radius: 50%;
-        object-fit: fill;
+        object-fit: contain;
       }
     }
 
@@ -74,7 +71,7 @@ $accentColor: #c60021;
           margin-bottom: 5px;
           font-size: 16px;
           font-weight: 700;
-          color: $primaryColor;
+          color: $textColor;
         }
 
         input {
@@ -84,7 +81,7 @@ $accentColor: #c60021;
           outline: none;
           border-bottom: 2px solid $bgColor;
           background-color: transparent;
-          color: $primaryColor;
+          color: $textColor;
           font-weight: 600;
           font-size: 14px;
 
@@ -105,7 +102,7 @@ $accentColor: #c60021;
             padding: 5px;
             outline: none;
             width: 95%;
-            color: $primaryColor;
+            color: $textColor;
             font-weight: 600;
           }
         }
@@ -125,42 +122,147 @@ $accentColor: #c60021;
 
         &:hover {
           background-color: $accentColor;
-          color: $secondaryColor;
+          color: $itemColor;
         }
       }
     }
   }
 }
 
-.new.dark {
-  background-color: #000;
+// dark theme 
 
-  .new-title {
-    -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
-    box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
-    background-color: #121212;
+.new-container.dark {
+  background-color: $bgColor-dark;
+
+  .title {
+    margin-bottom: 20px;
   }
 
   .form-container {
-    -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
-    box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
-    background-color: #121212;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: $itemColor-dark;
 
     .form {
       .form-group {
         label {
-          color: #ddd;
+          color: $accentColor-dark;
         }
 
         input {
-          border-bottom: 1px solid #ddd;
+          border-bottom: 1px solid $textColor-dark;
+          color: $textColor-dark;
         }
       }
 
       .form-button {
-        background-color: rgba(128, 0, 128, 0.5);
-        color: #aaa;
+        background-color: #66fcf130;
+        color: #66fcf1;
+
+        &:hover {
+          background-color: $accentColor-dark;
+          color: $itemColor-dark
+        }
       }
     }
   }
 }
+
+// media query
+
+@media screen and (max-width: 700px) {
+  .new-container {
+    border-top-right-radius: 10px;
+
+    .title {
+      font-size: 18px;
+    }
+  
+    .form-container {
+      flex-direction: column;  
+      gap: 25px;
+
+      .img {
+        flex: 1;  
+        img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+  
+      .form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  
+        .form-group {
+          width: 100%;
+  
+          label {
+            font-size: 14px;
+          }
+  
+          input {
+            width: 90%;
+            font-size: 14px;
+          }
+        }
+  
+        .form-button {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 701px) and (max-width: 990px) {
+  .new-container {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  
+    .title {
+      font-size: 22px;
+    }
+  
+    .form-container {
+      flex-direction: row;
+      gap: 25px;
+  
+      .img {
+        flex: 1;
+  
+        img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+  
+      .form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  
+        .form-group {
+          width: 100%;
+  
+          label {
+            font-size: 14px;
+          }
+  
+          input {
+            width: 90%;
+            font-size: 14px;
+          }
+        }
+  
+        .form-button {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  }
+

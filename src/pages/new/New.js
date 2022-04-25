@@ -6,11 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
 // icons
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import Message from '../../components/error/Message';
-// firebase tools
-import { storage } from '../../firebase';
-import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
-import { doc, addDoc, updateDoc } from 'firebase/firestore';
+import Message from '../../components/message/Message';
+// custom hooks
+import { useFirestore } from '../../hooks/useFirestore';
 
 export default function New({
   formInputFields, title, databaseRef, initialState
@@ -18,11 +16,10 @@ export default function New({
   const { theme } = useTheme();
   const [file, setFile] = useState(null);
   const [userInputs, setUserInputs] = useState(initialState);
-  const [error, setError] = useState('');
-  const [isPending, setIsPending] = useState(false);
+  const [inputError, setInputError] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
+  const { addData, isPending, error } = useFirestore(databaseRef);
   const navigate = useNavigate();
-  console.log(userInputs);
 
   // show message && navigate to previous page
   const successMessageAndNavigate = () => {
@@ -36,10 +33,10 @@ export default function New({
     // validate the file 
     switch (true) {
       case (!userFile.type.includes('image')):
-        setError('Please select an image for profile');
+        setInputError('Please select an image for profile');
         break;
-      case (userFile.size > 100000):
-        setError('Image size should be less than 100KB');
+      case (userFile.size > 150000):
+        setInputError('Image size should be less than 150KB');
         break;
       default:
         setFile(userFile);
@@ -63,45 +60,22 @@ export default function New({
     e.preventDefault();
     // check if all the fields are filled 
     if (Object.values(userInputs).includes('')) {
-      setError('Please fill in all the fields');
+      setInputError('Please fill in all the fields');
       return;
     }
     // check if an image has been selected
     else if (!file) {
-      setError('Please select an image');
+      setInputError('Please select an image');
       return;
     }
 
-    try {
-      setIsPending(true);
-      const addDocResponse = await addDoc(databaseRef, userInputs);
-      if (!addDocResponse) {
-        throw new Error('Something went wrong');
-      }
-
-      const uploadPath = ref(
-        storage,
-        `avatars/${addDocResponse.id}/${file.name}` //change upload path
-      );
-      await uploadBytes(uploadPath, file);
-      const imageUrl = await getDownloadURL(uploadPath);
-      const singleDocRef = doc(databaseRef, addDocResponse.id);
-      await updateDoc(singleDocRef, {
-        photoUrl: imageUrl,
-      });
-      setIsPending(false);
-      successMessageAndNavigate();
-    }
-    catch (err) {
-      console.log(err.message);
-      setError(err.message);
-      setIsPending(false);
-    }
+    await addData(userInputs, file);
+    successMessageAndNavigate();
   };
 
   return (
     <div className={ theme === 'light' ? 'new-container' : 'new-container dark' }>
-      <h2 className="new-title">{ title }</h2>
+      <h2 className="title">{ title }</h2>
       <div className="form-container">
         <div className="img">
           <img src={ file ?
@@ -121,7 +95,7 @@ export default function New({
               type="file"
               id='file'
               onChange={ handleFile }
-              onClick={ () => setError('') }
+              onClick={ () => setInputError('') }
             />
           </div>
 
@@ -135,7 +109,7 @@ export default function New({
                       name={ input.name }
                       id={ input.id }
                       onChange={ handleUserInputs }
-                      onFocus={ () => setError('') }
+                      onFocus={ () => setInputError('') }
                     >
                       <option value=''>Select a Category</option>
                       <option value='Computers'>Computers</option>
@@ -156,7 +130,7 @@ export default function New({
                     type={ input.type }
                     placeholder={ input.placeholder }
                     onChange={ handleUserInputs }
-                    onFocus={ () => setError('') }
+                    onFocus={ () => setInputError('') }
                   />
                 </div>
               );
@@ -172,7 +146,7 @@ export default function New({
       </div>
       { isPending && <Message message='Please wait' type='pending' /> }
       { showMessage && <Message message='Added successfuly' type='success' /> }
-      { error && <Message message={ error } type='error' /> }
+      { (error || inputError) && <Message message={ error || inputError } type='error' /> }
     </div>
   );
 }

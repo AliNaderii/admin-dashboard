@@ -9,10 +9,12 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 const deleteCustomer = async (id) => {
   const customerRef = doc(customersRef, id);
-
-  await deleteDoc(customerRef);
-
-
+  try {
+    await deleteDoc(customerRef);
+  }
+  catch (err) {
+    console.log(err.message);
+  }
 };
 
 

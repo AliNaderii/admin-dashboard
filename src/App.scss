@@ -1,0 +1,33 @@
+@use './scss/base' as *;
+
+.main-container {
+  display: flex; 
+  overflow: hidden;
+  
+  .page-container {
+    flex: 8;
+    background-color: $itemColor;
+    max-width: 100%;
+  }
+}
+
+// dark theme
+
+.main-container.dark {
+  
+  .page-container {
+    flex: 8;
+    background-color: $itemColor-dark;
+  }
+  
+}
+
+// media query
+
+@media screen and (max-width: 2000px) {
+  .main-container {
+    .page-container {
+      width: 80vw;
+    }
+  }
+}

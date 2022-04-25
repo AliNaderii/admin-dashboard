@@ -1,19 +1,16 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../../scss/base' as *;
 
 .featured {
-  flex: 2;
   padding: 10px;
   border-radius: 10px;
-  background-color: $secondaryColor;
+  background-color: $itemColor;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   .title {
     font-weight: 700;
-    color: $primaryColor;
+    color: $textColor;
+    font-size: 18px;
   }
 
   .bottom {
@@ -44,8 +41,8 @@ $accentColor: #c60021;
       }
 
       .text {
-        color: $primaryColor;
-        font-size: 14px;
+        color: $textColor;
+        font-size: 16px;
         font-weight: 600;
         text-align: center;
       }
@@ -68,8 +65,8 @@ $accentColor: #c60021;
         .stat-amount {
           display: flex;
           align-items: center;
-          gap: 5px;
           font-weight: 600;
+          font-size: 18px;
 
           &.up {
             color: green;
@@ -87,27 +84,66 @@ $accentColor: #c60021;
 // dark theme
 
 .featured.dark {
-  background-color: #121212;
-  -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
+  background-color: $itemColor-dark;
+  border: 1px solid $textColor-dark;
 
   .title {
-    color: #ddd;
-  }
-
-  .icon {
-    color: #ddd;
+    color: $textColor-dark;
   }
 
   .bottom {
     .sales-info {
       .text {
-        color: #ddd;
+        color: $textColor-dark;
       }
 
       .amount {
-        color: #ccc;
+        color: $textColor-dark;
       }
     }
   }
 }
+
+// media query
+
+@media screen and (max-width: 990px) {
+  .featured {
+    
+    .title {
+      font-size: 16px;
+    }
+  
+    .bottom {
+      gap: 10px;
+  
+      .progress {
+        width: 80px;
+        height: 80px;
+      }
+  
+      .sales-info {
+        gap: 15px;
+  
+        .amount {
+          font-size: 24px;
+        }
+  
+        .text {
+          font-size: 14px;
+        }
+      }
+  
+      .stats-container {        
+        .stat {
+          gap: 5px;
+  
+          .stat-amount {
+            gap: 1px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+

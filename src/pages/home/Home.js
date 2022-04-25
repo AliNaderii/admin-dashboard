@@ -28,12 +28,14 @@ export default function Home() {
 
       <div className="charts-container">
         <Featured />
-        <Chart aspect={ 2 / 1 } title='Last 6 Month (Revenue)' />
+        <Chart aspect={ 3 / 1 } title='Last 6 Month (Revenue)' />
       </div>
 
       <div className='table-container'>
-        <h3 className="table-title">Latest Transactions</h3>
-        <TransactionsTable />
+        <h3 className="title">Latest Transactions</h3>
+        <div className='table-wrapper'>
+          <TransactionsTable />
+        </div>
       </div>
     </div >
   );

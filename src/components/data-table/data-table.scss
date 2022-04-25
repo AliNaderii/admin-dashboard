@@ -1,18 +1,28 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
+$textColor: #605865;
+$itemColor: #f6f6f8;
 $bgColor: #e3e3e3;
 $accentColor: #c60021;
+
+$textColor-dark: #c5c6c7;
+$itemColor-dark: #1f2833;
+$bgColor-dark: #0b0c10;
+$accentColor-dark: #66fcf1;
 
 .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .tip {
+    color: $accentColor;
+    font-weight: 600;
+  }
   
   .add-btn {
     margin-bottom: 15px;
     text-decoration: none;
     border-radius: 5px;
-    background-color: $primaryColor;
+    background-color: $textColor;
     font-size: 16px;
     font-weight: 700;
     padding: 10px 15px;
@@ -32,11 +42,12 @@ $accentColor: #c60021;
   width: 100%;
   border-collapse: collapse;
   font-weight: 600;
+  margin-top: 30px;
 
   thead {
     background-color: $accentColor;
     text-align: left;
-    color: $secondaryColor;
+    color: $itemColor;
     height: 70px;
 
     th {
@@ -60,7 +71,8 @@ $accentColor: #c60021;
 
   tbody {
     tr {
-      border-bottom: thin solid $primaryColor;
+      border-bottom: thin solid $textColor;
+      color: $textColor;
 
       &:nth-of-type(even) {
         background-color: $bgColor;
@@ -89,7 +101,7 @@ $accentColor: #c60021;
   .passive {
     padding: 2px 4px;
     border-radius: 5px;
-    color: $secondaryColor;
+    color: $itemColor;
     font-weight: 600;
   }
 
@@ -111,7 +123,7 @@ $accentColor: #c60021;
     .action-btn {
       text-decoration: none;
       border: none;
-      background-color: $secondaryColor;
+      background-color: $itemColor;
       padding: 2px 5px;
       border-radius: 5px;
       font-size: 14px;
@@ -124,7 +136,7 @@ $accentColor: #c60021;
 
       &:hover {
         background-color: $accentColor;
-        color: $secondaryColor;
+        color: $itemColor;
       }
     }
   }
@@ -134,13 +146,19 @@ $accentColor: #c60021;
   margin-top: 15px;
   margin-left: auto;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  .pagination-counter {
+    font-weight: 600;
+    color: $textColor;
+  }
 
   .pagination-btn {
     border: none;
-    background-color: $primaryColor;
-    color: $bgColor;
+    background-color: $itemColor;
+    color: $textColor;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -150,9 +168,181 @@ $accentColor: #c60021;
     transition: all 0.3s ease;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      border: 1px solid $textColor;
 
     &:hover {
       background-color: $accentColor;
+      color: $itemColor;
+    }
+  }
+}
+
+// dark theme
+
+.top.dark {
+
+  .tip {
+    color: $accentColor-dark;
+  }
+
+  .add-btn {
+    background-color: $itemColor-dark;
+    color: $accentColor-dark;
+    border: 1px solid $textColor-dark;
+    
+    &:hover {
+      background-color: $accentColor-dark;
+      color: $itemColor-dark;
+    }
+  }
+}
+
+.datatable.dark {
+
+  thead {
+    background-color: $accentColor-dark;
+    color: $itemColor-dark;
+  }
+
+  tbody {
+    tr {
+      border-bottom: thin solid $textColor-dark;
+      color: $textColor-dark;
+
+      &:nth-of-type(even) {
+        background-color: $bgColor-dark;
+      }
+    }
+  }
+
+  .active,
+  .passive {
+    padding: 2px 4px;
+    border-radius: 5px;
+    color: $itemColor-dark;
+    font-weight: 600;
+  }
+
+  .active {
+    background-color: rgb(23, 65, 0);
+    color: $itemColor;
+  }
+
+  .passive {
+    background-color: #c60021;
+    color: $itemColor;
+  }
+
+  .action-container {
+
+    .action-btn {
+      background-color: $itemColor-dark;
+      color: $accentColor-dark;
+      border: 1px solid $textColor-dark;
+      
+      &:hover {
+        background-color: $accentColor-dark;
+        color: $itemColor-dark;
+      }
+    }
+  }
+}
+
+.pagination-container.dark {
+
+  .pagination-counter {
+    font-weight: 600;
+    color: $textColor-dark;
+  }
+
+  .pagination-btn {
+    background-color: $itemColor-dark;
+    color: $textColor-dark;
+    border: 1px solid $textColor-dark;
+
+    &:hover {
+      background-color: $accentColor-dark;
+      color: $itemColor-dark;
+    }
+  }
+}
+
+// media query
+
+@media screen and (max-width: 990px) {
+  .top {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 20px;
+  
+    .tip {
+      font-size: 12px;
+
+    }
+  
+    .add-btn {
+      margin-bottom: 0px;
+      font-size: 14px;
+      padding: 10px 10px;
+  
+      &:hover {
+        background-color: $accentColor;
+      }
+    }
+  }
+  
+  .datatable {
+    font-size: 14px;
+    margin-top: 20px;
+  
+    thead {
+      height: 50px;
+  
+      th {
+        padding: 8px 18px;
+      }
+    }
+  
+    tbody {
+      td {
+        padding: 8px 18px;
+      }
+    }
+  
+    .username-cell {
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+  
+    .active,
+    .passive {
+      padding: 1px 3px;
+    }
+  
+    .action-container {
+      gap: 10px;
+  
+      .action-btn {
+        padding: 2px 4px;
+        font-size: 12px;
+      }
+    }
+  }
+  
+  .pagination-container {
+    gap: 10px;
+  
+    .pagination-counter {
+      font-size: 14px;
+    }
+  
+    .pagination-btn {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
     }
   }
 }

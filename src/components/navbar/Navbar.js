@@ -6,9 +6,13 @@ import { useTheme } from '../../hooks/useTheme';
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import MenuIcon from '@mui/icons-material/Menu';
+// components
+import Sidebar from '../sidebar/Sidebar';
 
-export default function Navbar() {
+export default function Navbar({ toggle, showMenu }) {
   const { dispatch } = useTheme();
   const { theme } = useTheme();
 
@@ -18,7 +22,12 @@ export default function Navbar() {
 
   return (
     <div className={ theme === 'light' ? 'navbar' : 'navbar dark' }>
+      { console.log('Nav') }
       <div className="wrapper">
+        <Sidebar
+          className={ showMenu ? `sidebar hidden show` : `sidebar hidden` }
+        />
+        <MenuIcon className='menu-icon' onClick={ () => toggle(true) } />
         <div className="search">
           <input type="text" placeholder='Search...' />
           <SearchOutlinedIcon />
@@ -31,7 +40,12 @@ export default function Navbar() {
           </div>
 
           <div className="item" onClick={ changeTheme }>
-            <DarkModeOutlinedIcon className='icon' />
+            {
+              theme === 'light' ?
+                <DarkModeOutlinedIcon className='icon' />
+                :
+                <WbSunnyIcon className='icon' />
+            }
           </div>
 
           <div className="item">
@@ -44,6 +58,10 @@ export default function Navbar() {
           </div>
 
         </div>
+        {/* <div className="search">
+          <input type="text" placeholder='Search...' />
+          <SearchOutlinedIcon />
+        </div> */}
       </div>
     </div>
   );

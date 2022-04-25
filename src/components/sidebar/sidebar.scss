@@ -1,12 +1,13 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .sidebar {
   flex: 1;
-  background-color: $secondaryColor;
+  background-color: $itemColor;
   min-height: 100vh;
+
+  &.hidden {
+    display: none;
+  }
 
   .top {
     display: flex;
@@ -24,15 +25,16 @@ $accentColor: #c60021;
 
   .bottom {
     padding-left: 10px;
+    height: 100%;
 
     .link-container {
       list-style-type: none;
 
       .title {
         font-size: 10px;
-        color: $primaryColor;
+        color: $textColor;
         font-weight: 800;
-        margin: 15px 0 5px;
+        padding: 15px 0 5px;
       }
 
       .link {
@@ -45,9 +47,10 @@ $accentColor: #c60021;
         transition: all 0.2s ease;
 
         &:hover {
-          background-color: $primaryColor;
+          background-color: $bgColor;
+          color: $textColor
           span {
-            color: $secondaryColor;
+            color: $itemColor;
           }
         }
 
@@ -59,7 +62,7 @@ $accentColor: #c60021;
         span {
           font-size: 13px;
           font-weight: 700;
-          color: $primaryColor;
+          color: $textColor;
         }
       }
     }
@@ -69,28 +72,142 @@ $accentColor: #c60021;
 // dark theme
 
 .sidebar.dark {
-  background-color: #121212;
-  border-right: 0.5px solid #333;
+  background-color: $itemColor-dark;
+
+  &.hidden {
+    .bottom {
+      .link-container {
+        .title {
+          color: $textColor-dark;
+        }
+    
+        .link {
+    
+          &:hover {
+            background-color: $bgColor-dark;
+    
+            color: $textColor-dark span {
+              color: $itemColor-dark;
+            }
+          }
+    
+          .icon {
+            color: $accentColor-dark;
+          }
+    
+          span {
+            color: $textColor-dark;
+          }
+        }
+      }
+    }
+  }
 
   .top {
-    border-bottom: 1px solid #333;
+    .logo {
+      color: $accentColor-dark;
+    }
   }
 
   .bottom {
     .link-container {
       .title {
-        color: #ddd;
+        color: $textColor-dark;
       }
 
       .link {
         &:hover {
-          background-color: #555;
+          background-color: $bgColor-dark;
+          color: $textColor-dark
+
+          span {
+            color: $itemColor-dark;
+          }
+        }
+
+        .icon {
+          color: $accentColor-dark;
         }
 
         span {
-          color: #ccc;
+          color: $textColor-dark;
         }
       }
     }
   }
+}
+
+// media query
+
+@media screen and (min-width: 320px) and (max-width: 990px) {
+.sidebar {
+  display: none;
+
+  &.hidden {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transform: translateX(-100vw);
+    transition: all 0.3s ease;
+    z-index: 1;
+
+    &.show {
+      transform: translateX(0vw);
+    }
+
+
+    // .top {
+    //   background-color: red;
+    // }
+
+    .bottom {
+      padding: 10px;
+      flex: 1;
+
+
+      .link-container {
+        list-style-type: none;
+
+
+        .title {
+          display: none;
+        }
+
+        .link {
+          margin-top: 5px;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 5px;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background-color: $bgColor;
+
+            color: $textColor span {
+              color: $itemColor;
+            }
+          }
+
+          .icon {
+            font-size: 18px;
+            color: $accentColor;
+          }
+
+          span {
+            font-size: 13px;
+            font-weight: 700;
+            color: $textColor;
+          }
+        }
+      }
+    }
+  }
+}
 }

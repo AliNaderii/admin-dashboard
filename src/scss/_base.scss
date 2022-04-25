@@ -1,0 +1,19 @@
+/* VARIABLES */
+// light theme colors
+$textColor: #605865;
+$itemColor: #f6f6f8;
+$bgColor: #e3e3e3;
+$accentColor: #c60021;
+
+// dark theme colors
+$textColor-dark: #c5c6c7;
+$itemColor-dark: #1f2833;
+$bgColor-dark: #0b0c10;
+$accentColor-dark: #66fcf1;
+
+/* MIXINS */
+@mixin media($limit, $width) {
+  @media screen and (#{$limit}-width: $width)  {
+    @content;
+  }
+}

@@ -1,5 +1,5 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
+$textColor: #605865;
+$itemColor: #f6f6f8;
 $bgColor: #e3e3e3;
 $accentColor: #c60021;
 
@@ -8,9 +8,10 @@ $accentColor: #c60021;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px auto 20px;
   border-radius: 10px;
   font-weight: 700;
+  width: 90%;
 
   &.error {
     color: $accentColor;
@@ -24,7 +25,17 @@ $accentColor: #c60021;
   }
 
   &.pending {
-    background-color: $primaryColor;
-    color: $secondaryColor;
+    background-color: $textColor;
+    color: $itemColor;
+  }
+}
+
+// dark theme
+
+.message.dark {
+
+  &.success {
+    background-color: rgba(86, 240, 0, 0.3);
+    color: $itemColor;
   }
 }

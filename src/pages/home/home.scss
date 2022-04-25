@@ -1,13 +1,9 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .home-container {
-  flex: 6;
+  padding-bottom: 20px;
   background-color: $bgColor;
   border-top-left-radius: 10px;
-  padding-bottom: 20px;
 
   .widgets-container,
   .charts-container {
@@ -17,19 +13,23 @@ $accentColor: #c60021;
   }
 
   .charts-container {
-    padding: 5px 20px;
+    flex-direction: column;
   }
 
   .table-container {
-    background-color: $secondaryColor;
+    background-color: $itemColor;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-    .table-title {
-      color: $primaryColor;
+    .table-wrapper {
+      overflow: auto;
+    }
+
+    .title {
+      color: $textColor;
       margin-bottom: 30px;
     }
   }
@@ -38,13 +38,66 @@ $accentColor: #c60021;
 // dark theme
 
 .home-container.dark {
-  background-color: #000;
+  background-color: $bgColor-dark;
 
   .table-container {
-    -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
-    box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
-    .table-title {
-      color: #ddd;
+    background-color: $itemColor-dark;
+    border: 1px solid $textColor-dark;
+
+    .title {
+      color: $textColor-dark;
+    }
+  }
+}
+
+// media query
+@media screen and (max-width: 500px) {
+  .home-container {
+    .widgets-container,
+    .charts-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .table-container {
+      background-color: $itemColor;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  
+      .title {
+        color: $textColor;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 501px) and (max-width: 990px) {
+  .home-container{
+    .widgets-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-container {
+      flex-direction: column;
+    }
+
+    .table-container {
+      background-color: $itemColor;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  
+      .title {
+        color: $textColor;
+        margin-bottom: 30px;
+      }
     }
   }
 }

@@ -1,7 +1,4 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .single-container {
   background-color: $bgColor;
@@ -15,13 +12,13 @@ $accentColor: #c60021;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
       border-radius: 10px;
-      background-color: $secondaryColor;
+      background-color: $itemColor;
       margin-bottom: 15px;
 
       .title {
         font-weight: 700;
-        color: $primaryColor;
-        margin-bottom: 10px;
+        color: $textColor;
+        margin-bottom: 20px;
         font-size: 20px;
       }
 
@@ -40,7 +37,7 @@ $accentColor: #c60021;
         cursor: pointer;
 
         &:hover {
-          color: $secondaryColor;
+          color: $itemColor;
           background-color: $accentColor;
         }
       }
@@ -76,7 +73,7 @@ $accentColor: #c60021;
           }
 
           p {
-            color: $primaryColor;
+            color: $textColor;
             font-weight: 600;
             margin-bottom: 10px;
 
@@ -98,7 +95,7 @@ $accentColor: #c60021;
     .table-container {
       padding: 20px;
       margin-top: 20px;
-      background-color: $secondaryColor;
+      background-color: $itemColor;
       border-radius: 10px;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -106,7 +103,7 @@ $accentColor: #c60021;
   
       .title {
         font-weight: 700;
-        color: $primaryColor;
+        color: $textColor;
         margin-bottom: 30px;
         font-size: 20px;
       }
@@ -116,55 +113,89 @@ $accentColor: #c60021;
 
 // dark theme
 
-.single.dark {
-  background-color: #000;
+.single-container.dark {
+  background-color: $bgColor-dark;
 
-  .single-container {
+  .info-card {
+    background-color: $itemColor-dark;
+    border: 1px solid $textColor-dark;
+
     .title {
-      color: #ccc;
+      color: $textColor-dark;
     }
 
-    .top {
-      .info-card {
-        background-color: #121212;
-        -webkit-box-shadow: 2px 4px 5px 1px rgba(48, 15, 15, 0.1);
-        box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.1);
-        border-radius: 5px;
-        border: 1px solid #333;
+    .info-button {
+      background-color: #66fcf130;
+      color: $accentColor-dark;
 
-        .info-button {
-          background-color: rgba(128, 0, 128, 0.5);
-          color: #999;
+      &:hover {
+        color: $bgColor-dark;
+        background-color: $accentColor-dark;
+      }
+    }
+
+    .info-details {
+      .info-text {
+        h3, h4 {
+          color: $accentColor-dark;
         }
+        p {
+          color: $textColor-dark;
+        }
+      }
+    }
+  }
 
-        .info-details {
-          .info-text {
-            p {
-              color: #ddd;
-              font-weight: 600;
-              margin-bottom: 10px;
+  .table-container {
+    border: 1px solid $textColor-dark;
+    background-color: $itemColor-dark;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-              &:nth-child(1) {
-                font-size: 25px;
-                color: #999;
-              }
-            }
+    .title {
+      font-weight: 700;
+      color: $textColor-dark;
+    }
+  }
+}
+
+// media query
+
+@media screen and (max-width: 600px) {
+  .single-container {
+    border-top-right-radius: 10px;
+
+    .info-card {
+  
+      .info-button {
+        padding: 2px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+  
+      .info-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        font-size: 14px;
+        
+        .info-text {
+          padding-left: 5px;
+          
+          ul {
+            margin-top: 20px;
+            gap: 20px;
+            grid-template-columns: 1fr;
           }
         }
       }
-
-      .user-chart {
-        -webkit-box-shadow: 2px 4px 5px 1px rgba(48, 15, 15, 0.1);
-        box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.1);
-        border: 1px solid #333;
-      }
     }
-
-    .bottom {
-      border-radius: 5px;
-      -webkit-box-shadow: 2px 4px 5px 1px rgba(48, 15, 15, 0.1);
-      box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.1);
-      border: 1px solid #333;
+  
+    .table-container {
+      .table-wrapper {
+        overflow: auto;
+      }
     }
   }
 }

@@ -19,7 +19,7 @@ const db = getFirestore(app);
 export const storage = getStorage(app);
 export const auth = getAuth();
 // collection ref
-export const colRef = collection(db, 'latest-transactions');
+export const transactionsRef = collection(db, 'latest-transactions');
 export const customersRef = collection(db, 'customers');
 export const productsRef = collection(db, 'products');
 

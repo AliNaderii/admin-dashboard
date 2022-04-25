@@ -1,16 +1,17 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .navbar {
   height: 50px;
-  background-color: #f6f6f8;
+  background-color: $itemColor;
 
   .wrapper {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+
+    .menu-icon {
+      display: none;
+    }
 
     .search {
       display: flex;
@@ -19,14 +20,14 @@ $accentColor: #c60021;
       border-radius: 5px;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      color: $primaryColor;
+      color: $textColor;
 
       input {
         border: none;
         outline: none;
         background-color: transparent;
         padding: 5px;
-        color: $primaryColor;
+        color: $textColor;
         font-size: 14px;
         font-weight: 600;
       }
@@ -53,7 +54,7 @@ $accentColor: #c60021;
         }
 
         .icon {
-          color: $primaryColor;
+          color: $textColor;
           transition: all 0.2s ease;
         }
 
@@ -87,25 +88,57 @@ $accentColor: #c60021;
 // dark theme
 
 .navbar.dark {
-  background-color: #121212;
-  border-bottom: 0.5px solid #333;
-
+  background-color: $itemColor-dark;
   .wrapper {
+
     .search {
-      border: 1px solid #777;
-      color: #ccc;
+      border: 1px solid $textColor-dark;
+      color: $textColor-dark;
 
       input {
-        color: #ccc;
+        color: $textColor-dark;
+      }
+    }
+
+    .items-container {
+      .item {
+        color: $textColor-dark;
+
+        &:hover {
+          color: $accentColor-dark;
+
+          .icon {
+            color: $accentColor-dark;
+          }
+        }
+
+        .icon {
+          color: $textColor-dark;
+        }
+
+        .badge {
+          background-color: $accentColor-dark;
+          color: $bgColor-dark;
+        }
       }
     }
   }
+}
 
-  .items-container {
-    .item {
-      color: #ddd;
-      .icon {
-        color: #ddd;
+// media query
+
+@media screen and (max-width: 990px) {
+  .navbar {
+    height: 50px;
+    background-color: $itemColor;
+  
+    .wrapper {
+      .menu-icon {
+        display: block;
+      }
+  
+      .search {
+        display: none;
       }
     }
   }

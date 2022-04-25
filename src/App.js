@@ -1,5 +1,6 @@
 // tools
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from './hooks/useAuth';
 // pages && components
 import Home from './pages/home/Home';
@@ -18,20 +19,38 @@ import { productsRef } from './firebase';
 // table columns
 import customersTableColumns from './assets/table-columns/customersTableColumns';
 import productsTableColumns from './assets/table-columns/productsTableColumns';
+// styles
+import './App.scss';
+// custom hooks
+import { useTheme } from './hooks/useTheme';
 
 function App() {
   const { user } = useAuth();
+  const { theme } = useTheme();
+  const [showMenu, setShowMenu] = useState(false);
+
 
   const CheckAuth = ({ children }) => {
     return user ? children : <Navigate to='/login' />;
   };
 
+  const toggleShowMenu = (value) => {
+    setShowMenu(value);
+  };
+
   return (
-    <div style={ { display: 'flex', minHeight: '100vh' } }>
+    <div
+      className={ theme === 'light' ? 'main-container' : 'main-container dark' }
+    >
+      { console.log('App') }
       <Router>
-        <Sidebar />
-        <div style={ { flex: 8, backgroundColor: '#e3e3e3' } }>
-          <Navbar />
+        { user && <Sidebar className='sidebar' /> }
+        <div className='page-container' onClick={ () => {
+          if (showMenu) {
+            toggleShowMenu(false);
+          };
+        } } >
+          { user && <Navbar toggle={ toggleShowMenu } showMenu={ showMenu } /> }
           <Routes>
             <Route path='/'>
               <Route

@@ -8,10 +8,13 @@ import FilterInput from "./FilterInput";
 // icons
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+// custom hooks
+import { useTheme } from '../../hooks/useTheme';
 
 export default function DataTable({
-  tableData, tableColumns, addNewLink, linkText
+  data: tableData, tableColumns, addNewLink, linkText
 }) {
+  const { theme } = useTheme();
   const columns = useMemo(() => tableColumns, [tableColumns]);
   const data = useMemo(() => tableData, [tableData]);
   const table = useTable({
@@ -31,14 +34,18 @@ export default function DataTable({
     prepareRow,
     setGlobalFilter,
     state,
+    pageCount
   } = table;
 
-  const { globalFilter } = state;
+  const { globalFilter, pageIndex } = state;
 
   return (
     <>
-      <div className="top">
-        <FilterInput filter={ globalFilter } setFilter={ setGlobalFilter } />
+      <div className={ theme === 'light' ? 'top' : 'top dark' }>
+        <div>
+          <FilterInput filter={ globalFilter } setFilter={ setGlobalFilter } />
+          <p className='tip'>* You can sort the table by clicking on table headers</p>
+        </div>
         <Link
           to={ addNewLink }
           className='add-btn'>
@@ -46,8 +53,11 @@ export default function DataTable({
         </Link>
       </div>
 
-      <>
-        <table className="datatable" { ...getTableProps() }>
+      <div className="table-wrapper">
+        <table
+          className={ theme === 'light' ? 'datatable' : 'datatable dark' }
+          { ...getTableProps() }
+        >
           <thead >
             { headerGroups.map(headerGroup => (
               <tr
@@ -89,23 +99,24 @@ export default function DataTable({
             }) }
           </tbody>
         </table>
-        <div className="pagination-container">
-          <button
-            className='pagination-btn'
-            disabled={ !canPreviousPage }
-            onClick={ () => previousPage() }>
-            prev
-          </button>
-          <button
-            className='pagination-btn'
-            disabled={ !canNextPage }
-            onClick={ () => nextPage() }>
-            next
-          </button>
-        </div>
-      </>
-
-
+      </div>
+      <div className={ theme === 'light' ? "pagination-container" : "pagination-container dark" }>
+        <button
+          className='pagination-btn'
+          disabled={ !canPreviousPage }
+          onClick={ () => previousPage() }>
+          prev
+        </button>
+        <p className='pagination-counter'>
+          { pageIndex + 1 } of { pageCount }
+        </p>
+        <button
+          className='pagination-btn'
+          disabled={ !canNextPage }
+          onClick={ () => nextPage() }>
+          next
+        </button>
+      </div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import format from "date-fns/format";
 
-export const COLUMNS = [
+export const TransactionsTableColumns = [
   {
     Header: 'Tracking ID',
     accessor: 'id',
@@ -56,46 +56,5 @@ export const COLUMNS = [
         { row.original.status }
       </span>
     )
-  }
-];
-
-export const GROUPED_COLUMNS = [
-  {
-    Header: 'Tracking ID',
-    accessor: 'id'
-  },
-  {
-    Header: 'GROUP-1',
-    columns: [
-      {
-        Header: 'Product',
-        accessor: 'product'
-      },
-      {
-        Header: 'Customer',
-        accessor: 'customer'
-      },
-      {
-        Header: 'Date',
-        accessor: 'date'
-      }
-    ]
-  },
-  {
-    Header: 'GROUP-2',
-    columns: [
-      {
-        Header: 'Amount',
-        accessor: 'amount'
-      },
-      {
-        Header: 'Payment Method',
-        accessor: 'method'
-      },
-      {
-        Header: 'Status',
-        accessor: 'status'
-      }
-    ]
   }
 ];

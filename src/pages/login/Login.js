@@ -6,10 +6,14 @@ import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import Message from '../../components/message/Message';
+// custom hooks
+import { useTheme } from '../../hooks/useTheme';
 
 export default function Login() {
-  const [error, setError] = useState('');
-  // const [msg, setMsg] = useState('');
+  const { theme } = useTheme();
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(null);
   const navigate = useNavigate();
@@ -18,22 +22,23 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsPending(true);
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       if (res.user) {
         dispatch({ type: 'LOGIN', payload: res.user });
+        setIsPending(false);
         navigate('/');
       }
     }
     catch (err) {
+      setIsPending(false);
       setError(err.message);
     }
   };
 
-
-
   return (
-    <div className='login'>
+    <div className={ theme === 'light' ? 'login' : 'login dark' }>
       <form className="form" onSubmit={ handleSubmit }>
 
         <div className="form-group">
@@ -41,8 +46,9 @@ export default function Login() {
           <input
             type='email'
             id='email'
-            placeholder='Enter your email'
+            placeholder='admin@gmail.com'
             onChange={ (e) => setEmail(e.target.value) }
+            onFocus={ () => setError(null) }
           />
         </div>
 
@@ -51,14 +57,20 @@ export default function Login() {
           <input
             type='password'
             id='password'
-            placeholder='Enter your password'
+            placeholder='123456'
             onChange={ (e) => setPassword(e.target.value) }
+            onFocus={ () => setError(null) }
           />
         </div>
 
-        <button type='submit' className='form-button'>Login</button>
+        {
+          isPending ?
+            <button type='button' className='form-button' disabled>Please Wait</button>
+            :
+            <button type='submit' className='form-button'>Login</button>
+        }
       </form>
-      { error.length > 0 && <p className='error'>{ error }</p> }
+      { error && <Message type='error' message={ error } /> }
     </div>
   );
 }

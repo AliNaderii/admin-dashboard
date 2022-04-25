@@ -1,49 +1,79 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .list-container {
-  flex: 6;
   border-top-left-radius: 10px;
-  background-color: $bgColor;
   padding: 20px;
   min-height: 100vh;
-
-  .add-btn {
-    text-decoration: none;
-    border-radius: 5px;
-    background-color: $primaryColor;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 10px 15px;
-    color: $bgColor;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: $accentColor;
-    }
-  }
+  background-color: $bgColor;
 
   .table-container {
-    background-color: $secondaryColor;
-    overflow: auto;
+    background-color: $itemColor;
     padding: 20px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    overflow: hidden;
+
+      .table-wrapper {
+        overflow: auto;
+      }
+
+      .message-container {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .add-btn {
+          text-align: center;
+        }
+      }
 
     .table-title {
-      color: $primaryColor;
+      color: $textColor;
       margin-bottom: 30px;
     }
   }
 }
 
-.list.dark {
-  background-color: #121212;
+// dark theme
+
+.list-container.dark {
+  background-color: $bgColor-dark;
+  
+
+  .add-btn {
+    background-color: $itemColor-dark;
+    color: $accentColor-dark;
+    border: 1px solid $textColor-dark;
+    
+    &:hover {
+      background-color: $accentColor-dark;
+      color: $itemColor-dark;
+    }
+  }
+
+  .table-container {
+    background-color: $itemColor-dark;
+    border: 1px solid $textColor-dark;
+
+    .table-title {
+      color: $textColor-dark;
+    }
+  }
+}
+
+// media query
+@media screen and (max-width: 990px) {
+  .list-container {
+    border-top-right-radius: 10px;
+    
+    .table-container {
+
+      .table-title {
+        font-size: 22px;
+        margin-bottom: 30px;
+      }
+    }
+  }
 }

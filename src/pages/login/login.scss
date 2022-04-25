@@ -1,3 +1,5 @@
+@use '../../scss/base' as *;
+
 .login {
   height: 100vh;
   display: flex;
@@ -30,7 +32,8 @@
         padding: 5px;
         border: none;
         outline: none;
-        border-bottom: 1px solid black;
+        color: $textColor;
+        border-bottom: 1px solid $textColor;
         background-color: transparent;
 
         &::placeholder {
@@ -44,8 +47,8 @@
       width: 150px;
       padding: 10px;
       border: none;
-      background-color: rgba(128, 0, 128, 0.2);
-      color: purple;
+      background-color: #c6002130;
+      color: $accentColor;
       border-radius: 5px;
       transition: all 0.2s ease;
       margin-top: 20px;
@@ -53,8 +56,8 @@
       font-weight: 700;
 
       &:hover {
-        background-color: purple;
-        color: #fff;
+        background-color: $accentColor;
+        color: $itemColor;
       }
     }
   }
@@ -64,5 +67,49 @@
     border-radius: 5px;
     padding: 5px 10px;
     background-color: rgba(255, 0, 0, 0.2);
+  }
+}
+
+// dark theme
+
+.login.dark {
+
+  .form {
+
+    .form-group {
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-weight: 700;
+        color: $textColor-dark;
+      }
+
+      input {
+        color: $textColor-dark;
+        border-bottom: 1px solid $textColor-dark;
+
+        &::placeholder {
+          font-weight: 700;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .form-button {
+      background-color: #66fcf130;
+      color: $accentColor-dark;
+
+      &.wait {
+        background-color: $textColor-dark;
+        color: $itemColor-dark;
+      }
+
+      &:hover {
+        background-color: $accentColor-dark;
+        color: $itemColor-dark;
+      }
+    }
   }
 }

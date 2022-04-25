@@ -13,6 +13,18 @@ import { buildStyles } from 'react-circular-progressbar';
 export default function Featured() {
   const { theme } = useTheme();
 
+  const chartStyle = theme === 'light' ?
+    buildStyles({
+      textColor: '#c60021',
+      pathColor: '#c60021',
+      trailColor: '#e3e3e3'
+    }) :
+    buildStyles({
+      textColor: '#66fcf1',
+      pathColor: '#66fcf1',
+      trailColor: '#0b0c10',
+    });
+
   return (
     <div className={ theme === 'light' ? 'featured' : 'featured dark' }>
 
@@ -25,11 +37,7 @@ export default function Featured() {
           <CircularProgressbar
             value={ 70 }
             text={ '70%' }
-            styles={ buildStyles({
-              textColor: '#c60021',
-              pathColor: '#c60021'
-
-            }) }
+            styles={ chartStyle }
           />
         </div>
 

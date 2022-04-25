@@ -1,61 +1,53 @@
+import React from 'react';
 // styles
 import './list.scss';
 // tools
 import { useTheme } from '../../hooks/useTheme';
-import { useCallback, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// firebase collection ref && tools
-import { onSnapshot } from "firebase/firestore";
 // components
 import DataTable from '../../components/data-table/DataTable';
 import Spinner from '../../components/spinner/Spinner';
+import Message from '../../components/message/Message';
+// custome hooks
+import { useData } from '../../hooks/useData';
 
-export default function List(props) {
+const List = (props) => {
   const { theme } = useTheme();
-  const [tableData, setTableData] = useState([]);
-  const [error, setError] = useState(null);
+  const { data, error, isPending } = useData(props.databaseRef);
 
-  const getTableData = useCallback(
-    () => {
-      setError(false);
-      try {
-        onSnapshot(props.databaseRef, (snapshot) => {
-          let fetchedData = [];
-          snapshot.docs.forEach(
-            doc => fetchedData.push({ ...doc.data(), id: doc.id })
-          );
-          setTableData([...fetchedData]);
-        });
-      }
-      catch (err) {
-        console.log(err.message);
-        setError(err.message);
-      }
-    }, [props.databaseRef]);
-
-  useEffect(() => {
-    getTableData();
-  }, [getTableData]);
 
   return (
     <div
       className={ theme === 'light' ? 'list-container' : 'list-container dark' }
     >
-      <div className="table-container">
-        <h2 className="table-title">{ props.tableTitle }</h2>
+      { console.log('List') }
+      { isPending ? (
+        <Spinner />
+      ) : (
+        <div className="table-container">
+          <h2 className="table-title">{ props.tableTitle }</h2>
+          {
+            !data && !isPending && (
+              <div className='message-container'>
+                <Message type='pending' message='There is no data here' />
+                <Link
+                  to={ props.addNewLink }
+                  className='add-btn'>
+                  { props.linkText }
+                </Link>
+              </div>
+            )
+          }
+          {
+            data.length !== 0 &&
+            <DataTable data={ data } { ...props } />
+          }
+          { error && <Message type='error' message={ error } /> }
+        </div>
+      ) }
 
-        { tableData.length === 0 && <Spinner /> }
-        {
-          tableData.length !== 0 &&
-          <DataTable tableData={ tableData } { ...props } />
-        }
-        { error && <p>{ error }</p> }
-        <Link
-          to={ props.addNewLink }
-          className='add-btn'>
-          { props.linkText }
-        </Link>
-      </div>
     </div>
   );
-}
+};
+
+export default React.memo(List);

@@ -1,7 +1,4 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .transactions-table {
   width: 100%;
@@ -11,11 +8,11 @@ $accentColor: #c60021;
   thead {
     background-color: $accentColor;
     text-align: left;
-    color: $secondaryColor;
+    color: $itemColor;
     height: 70px;
 
     th {
-      padding: 12px 15px;
+      padding: 12px 25px;
 
       &:nth-child(1) {
         border-top-left-radius: 10px;
@@ -29,7 +26,7 @@ $accentColor: #c60021;
 
   tbody {
     tr {
-      border-bottom: thin solid $primaryColor;
+      border-bottom: thin solid $textColor;
 
       &:nth-of-type(even) {
         background-color: $bgColor;
@@ -66,5 +63,69 @@ $accentColor: #c60021;
     padding: 2px 4px;
     background-color: #c6002130;
     color: $accentColor;
+  }
+}
+
+// dark theme
+
+.transactions-table.dark {
+
+  thead {
+    background-color: $accentColor-dark;
+    color: $itemColor-dark;
+  }
+
+  tbody {
+    tr {
+      border-bottom: thin solid $textColor-dark;
+      color: $textColor-dark;
+      background-color: $itemColor-dark;
+
+      &:nth-of-type(even) {
+        background-color: $bgColor-dark;
+      }
+    }
+  }
+
+  .approved {
+
+    background-color: rgb(23, 65, 0);
+    color: $itemColor;
+  }
+
+  .pending {
+    background-color: #c60021;
+    color: $itemColor;
+  }
+}
+
+// media query
+
+@media screen and (max-width: 990px) {
+  .transactions-table {
+    font-size: 14px;
+  
+    thead {
+      height: 50px;
+  
+      th {
+        padding: 8px 18px;
+      }
+    }
+  
+    tbody {
+  
+      td {
+        padding: 8px 18px;
+      }
+    }
+  
+    .product-cell {
+  
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 }

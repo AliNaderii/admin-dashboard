@@ -1,52 +1,24 @@
 // styles
 import './transactions-table.scss';
+// components
 import Spinner from '../spinner/Spinner';
+import Message from '../message/Message';
 // tools
-import { useMemo, useEffect, useCallback, useState } from 'react';
-// import { useTheme } from '../../hooks/useTheme';
+import { useMemo } from 'react';
 import { useTable } from 'react-table';
 // table data
-import { COLUMNS } from './columns';
-// import MOCK_DATA from './MOCK_DATA.js';
-// firebase collection refrence && tools
-import { getDocs } from 'firebase/firestore';
-import { colRef } from '../../firebase';
+import { TransactionsTableColumns } from '../../assets/table-columns/transactionsTableColumns';
+// firebase collection refrence
+import { transactionsRef } from '../../firebase';
+// custom hooks
+import { useTheme } from '../../hooks/useTheme';
+import { useData } from '../../hooks/useData';
 
 export default function TransactionsTable() {
-  // const { theme } = useTheme();
-  const [transactions, setTransactions] = useState([]);
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState('');
+  const { theme } = useTheme();
+  const { data: transactions, error, isPending } = useData(transactionsRef);
 
-  const getLatestTransactions = useCallback(
-    async () => {
-      setIsPending(true);
-      setError('');
-
-      try {
-        const res = await getDocs(colRef);
-        if (!res) {
-          throw new Error('something went wrong');
-        }
-        res.docs.forEach(
-          doc => setTransactions(prevState => [...prevState, doc.data()])
-        );
-
-        setIsPending(false);
-      }
-      catch (err) {
-        console.log(err.message);
-        setError(err.message);
-      }
-    }, []);
-
-  useEffect(() => {
-    getLatestTransactions();
-    console.log('useEffect');
-  }, [getLatestTransactions]);
-
-
-  const columns = useMemo(() => COLUMNS, []);
+  const columns = useMemo(() => TransactionsTableColumns, []);
   const data = useMemo(() => transactions, [transactions]);
   const {
     getTableProps,
@@ -66,7 +38,9 @@ export default function TransactionsTable() {
           <Spinner loading={ isPending } />
         </div>
       ) : (
-        <table { ...getTableProps() } className='transactions-table'>
+        <table { ...getTableProps() }
+          className={ theme === 'light' ? 'transactions-table' : 'transactions-table dark' }
+        >
           <thead>
             { headerGroups.map(headerGroup => (
               <tr { ...headerGroup.getHeaderGroupProps() }>
@@ -97,7 +71,7 @@ export default function TransactionsTable() {
           </tbody>
         </table>
       ) }
-      { error && <p>{ error }</p> }
+      { error && <Message type='error' message={ error } /> }
     </>
   );
-}
+};

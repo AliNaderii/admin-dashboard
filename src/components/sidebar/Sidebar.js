@@ -20,7 +20,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-export default function Sidebar() {
+export default function Sidebar({ className }) {
   const { theme } = useTheme();
   const { dispatch } = useAuth();
 
@@ -30,7 +30,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className={ theme === 'light' ? 'sidebar' : 'sidebar dark' }>
+    <div className={ theme === 'light' ? `${className}` : `${className} dark` }>
 
       <div className="top">
         <Link to='/' className="logo">myAdmin</Link >

@@ -1,7 +1,4 @@
-$primaryColor: #605865;
-$secondaryColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .widget {
   display: flex;
@@ -18,23 +15,23 @@ $accentColor: #c60021;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 5px;
 
     .title {
       font-weight: 700;
-      color: $primaryColor;
+      color: $textColor;
     }
 
     .stat {
       font-size: 25px;
       font-weight: 700;
+      color: $accentColor;
     }
 
     .link {
-      display: flex;
-      align-items: center;
       font-size: 14px;
       font-weight: 600;
-      color: #605865;
+      color: $textColor;
       transition: all 0.2s ease;
 
       &:hover {
@@ -70,21 +67,83 @@ $accentColor: #c60021;
 
 // dark theme
 .widget.dark {
-  background-color: #121212;
-  -webkit-box-shadow: 2px 4px 5px 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 2px 4px 5px 1px rgba(201, 201, 201, 0.15);
+  background-color: $itemColor-dark;
+  border: 1px solid $textColor-dark;
 
   .left {
+
     .title {
-      color: #ddd;
+      color: $textColor-dark;
     }
 
     .stat {
-      color: #ccc;
+      color: $accentColor-dark;
     }
 
     .link {
-      color: #ccc;
+      color: $textColor-dark;
+
+      &:hover {
+        color: $accentColor-dark;
+      }
+    }
+  }
+}
+
+// media query
+
+@media screen and (max-width: 700px) {
+  .widget {
+    .left {
+      .title {
+        font-size: 14px;
+      }
+  
+      .stat {
+        font-size: 20px;
+      }
+  
+      .link {
+        font-size: 12px;
+      }
+    }
+  
+    .right {
+      .percent {
+        font-size: 14px;
+      }
+  
+      .icon {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 900px) {
+  .widget {
+    .left {
+      .title {
+        font-size: 15px;
+      }
+
+      .stat {
+        font-size: 22px;
+      }
+
+      .link {
+        font-size: 13px;
+      }
+    }
+
+    .right {
+      .percent {
+        font-size: 15px;
+      }
+
+      .icon {
+        font-size: 22px;
+      }
     }
   }
 }

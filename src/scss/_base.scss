@@ -1,4 +1,5 @@
 /* VARIABLES */
+
 // light theme colors
 $textColor: #605865;
 $itemColor: #f6f6f8;
@@ -11,9 +12,34 @@ $itemColor-dark: #1f2833;
 $bgColor-dark: #0b0c10;
 $accentColor-dark: #66fcf1;
 
+// margin && padding
+$container-padding: 20px;
+
+// utilities
+$box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+// font sizes
+$title-m: 22px;
+$title-sm: 20px;
+
 /* MIXINS */
-@mixin media($limit, $width) {
-  @media screen and (#{$limit}-width: $width)  {
-    @content;
-  }
+
+@mixin container {
+  padding: 20px;
+  background-color: $bgColor;
+  min-height: 100vh;
+  border-top-left-radius: 10px;
+  color: $textColor;
+}
+
+@mixin title {
+  color: $textColor;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+@mixin container-border-radius {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }

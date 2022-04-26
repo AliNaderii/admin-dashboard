@@ -1,5 +1,5 @@
 // styles
-import './sidebar.scss';
+import './HiddenSidebar.scss';
 // tools
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
@@ -7,6 +7,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 // icons
+import CloseIcon from '@mui/icons-material/Close';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
@@ -20,7 +21,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-export default function Sidebar() {
+export default function HiddenSidebar({ showSidebar, toggleSidebar }) {
   const { theme } = useTheme();
   const { dispatch } = useAuth();
 
@@ -31,12 +32,19 @@ export default function Sidebar() {
 
   return (
     <div
-      className={ theme === 'light' ? 'sidebar' : 'sidebar dark' }
-      onClick={ (e) => console.log(e.target) }
+      className={ theme === 'light' ?
+        `hidden-sidebar ${showSidebar}` : `hidden-sidebar ${showSidebar} dark`
+      }
     >
 
       <div className="top">
-        <Link to='/' className="logo">myAdmin</Link >
+        <button
+          aria-label='close button'
+          className='close-btn'
+          onClick={ toggleSidebar }
+        >
+          <CloseIcon />
+        </button>
       </div>
 
       <div className="bottom">

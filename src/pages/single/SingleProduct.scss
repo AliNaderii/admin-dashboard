@@ -1,22 +1,17 @@
 @use '../../scss/base'as *;
 
 .single-product-container {
-  padding: 20px;
-  background-color: $bgColor;
-  min-height: 100vh;
-  border-top-left-radius: 10px;
-  color: $textColor;
+  @include container;
 
   .info-card {
-    background-color: $itemColor;
     margin-top: 15px;
-    padding: 20px;
     border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: $itemColor;
+    padding: $container-padding;
+    box-shadow: $box-shadow;
     
     .title {
-      margin-bottom: 30px;
+      @include title;
     }
     
     .info-container {
@@ -51,8 +46,6 @@
           }
         }
       }
-
-    
   }
 }
 
@@ -73,11 +66,10 @@
 
 @media screen and (max-width: 600px) {
   .single-product-container {
-    border-top-right-radius: 10px;
+    @include container-border-radius;
     font-size: 14px;
   
     .info-card {
-  
       .info-container {
         display: flex;
         flex-direction: column;

@@ -1,15 +1,13 @@
 @use '../../scss/base' as *;
 
 .home-container {
-  padding-bottom: 20px;
-  background-color: $bgColor;
-  border-top-left-radius: 10px;
+  @include container;
 
   .widgets-container,
   .charts-container {
     display: flex;
-    padding: 20px;
     gap: 25px;
+    padding: $container-padding;
   }
 
   .charts-container {
@@ -17,20 +15,19 @@
   }
 
   .table-container {
-    background-color: $itemColor;
-    padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: $itemColor;
+    padding: $container-padding;
+    box-shadow: $box-shadow;
 
     .table-wrapper {
       overflow: auto;
     }
 
     .title {
-      color: $textColor;
-      margin-bottom: 30px;
+      @include title;
+      font-size: 18px;
     }
   }
 }
@@ -59,17 +56,9 @@
       gap: 15px;
     }
   
-    .table-container {
-      background-color: $itemColor;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  
+    .table-container {  
       .title {
-        color: $textColor;
-        margin-bottom: 30px;
+        font-size: $title-sm;
       }
     }
   }
@@ -87,16 +76,8 @@
     }
 
     .table-container {
-      background-color: $itemColor;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  
       .title {
-        color: $textColor;
-        margin-bottom: 30px;
+        font-size: $title-m;
       }
     }
   }

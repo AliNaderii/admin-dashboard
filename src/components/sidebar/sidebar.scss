@@ -2,12 +2,8 @@
 
 .sidebar {
   flex: 1;
-  background-color: $itemColor;
   min-height: 100vh;
-
-  &.hidden {
-    display: none;
-  }
+  background-color: $itemColor;
 
   .top {
     display: flex;
@@ -18,8 +14,8 @@
     .logo {
       font-size: 20px;
       font-weight: 700;
-      color: $accentColor;
       text-decoration: none;
+      color: $accentColor;
     }
   }
 
@@ -33,7 +29,7 @@
       .title {
         font-size: 10px;
         color: $textColor;
-        font-weight: 800;
+        font-weight: 700;
         padding: 15px 0 5px;
       }
 
@@ -74,35 +70,6 @@
 .sidebar.dark {
   background-color: $itemColor-dark;
 
-  &.hidden {
-    .bottom {
-      .link-container {
-        .title {
-          color: $textColor-dark;
-        }
-    
-        .link {
-    
-          &:hover {
-            background-color: $bgColor-dark;
-    
-            color: $textColor-dark span {
-              color: $itemColor-dark;
-            }
-          }
-    
-          .icon {
-            color: $accentColor-dark;
-          }
-    
-          span {
-            color: $textColor-dark;
-          }
-        }
-      }
-    }
-  }
-
   .top {
     .logo {
       color: $accentColor-dark;
@@ -117,12 +84,7 @@
 
       .link {
         &:hover {
-          background-color: $bgColor-dark;
-          color: $textColor-dark
-
-          span {
-            color: $itemColor-dark;
-          }
+          background-color: $bgColor-dark;          
         }
 
         .icon {
@@ -143,35 +105,12 @@
 .sidebar {
   display: none;
 
-  &.hidden {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transform: translateX(-100vw);
-    transition: all 0.3s ease;
-    z-index: 1;
-
-    &.show {
-      transform: translateX(0vw);
-    }
-
-
-    // .top {
-    //   background-color: red;
-    // }
-
     .bottom {
       padding: 10px;
       flex: 1;
 
 
       .link-container {
-        list-style-type: none;
-
 
         .title {
           display: none;
@@ -209,5 +148,4 @@
       }
     }
   }
-}
 }

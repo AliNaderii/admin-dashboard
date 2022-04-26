@@ -1,6 +1,5 @@
 // tools
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useAuth } from './hooks/useAuth';
 // pages && components
 import Home from './pages/home/Home';
@@ -12,7 +11,7 @@ import SingleProduct from './pages/single/SingleProduct';
 import Sidebar from './components/sidebar/Sidebar';
 import Navbar from './components/navbar/Navbar';
 // form inputs data
-import { userInputs, customerInitialState, productInputs, productInitialState } from './formSource';
+import { userInputs, customerInitialState, productInputs, productInitialState } from './constants/formSource';
 // firebase tools
 import { customersRef } from './firebase';
 import { productsRef } from './firebase';
@@ -27,30 +26,24 @@ import { useTheme } from './hooks/useTheme';
 function App() {
   const { user } = useAuth();
   const { theme } = useTheme();
-  const [showMenu, setShowMenu] = useState(false);
 
 
   const CheckAuth = ({ children }) => {
     return user ? children : <Navigate to='/login' />;
   };
 
-  const toggleShowMenu = (value) => {
-    setShowMenu(value);
-  };
-
   return (
     <div
       className={ theme === 'light' ? 'main-container' : 'main-container dark' }
     >
-      { console.log('App') }
       <Router>
-        { user && <Sidebar className='sidebar' /> }
-        <div className='page-container' onClick={ () => {
-          if (showMenu) {
-            toggleShowMenu(false);
-          };
-        } } >
-          { user && <Navbar toggle={ toggleShowMenu } showMenu={ showMenu } /> }
+        { user && (
+          <div className="side-container">
+            <Sidebar />
+          </div>
+        ) }
+        <div className='page-container' >
+          { user && <Navbar /> }
           <Routes>
             <Route path='/'>
               <Route

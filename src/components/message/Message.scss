@@ -1,7 +1,4 @@
-$textColor: #605865;
-$itemColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
+@use '../../scss/base' as *;
 
 .message {
   display: flex;

@@ -1,0 +1,212 @@
+@use '../../scss/base'as *;
+
+.hidden-sidebar {
+  background-color: $itemColor;
+  min-height: 100vh;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: $box-shadow;
+  z-index: 2;
+
+  .top {
+    display: flex;
+    height: 50px;
+    justify-content: flex-start;
+    align-items: center;
+
+    .close-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 50%;
+      color: $itemColor;
+      background-color: $accentColor;
+    }
+  }
+
+  .bottom {
+    padding-left: 10px;
+    height: 100%;
+
+    .link-container {
+      list-style-type: none;
+
+      .title {
+        font-size: 10px;
+        color: $textColor;
+        font-weight: 800;
+        padding: 15px 0 5px;
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: $bgColor;
+
+          color: $textColor span {
+            color: $itemColor;
+          }
+        }
+
+        .icon {
+          font-size: 18px;
+          color: $accentColor;
+        }
+
+        span {
+          font-size: 13px;
+          font-weight: 700;
+          color: $textColor;
+        }
+      }
+    }
+  }
+}
+
+// dark theme
+
+.hidden-sidebar.dark {
+  background-color: $itemColor-dark;
+  border-right: 1px solid $textColor;
+  border-bottom: 1px solid $textColor;
+
+
+    .bottom {
+      .link-container {
+        .title {
+          color: $textColor-dark;
+        }
+
+        .link {
+
+          &:hover {
+            background-color: $bgColor-dark;
+
+            color: $textColor-dark;
+            
+            span {
+              color: $itemColor-dark;
+            }
+          }
+
+          .icon {
+            color: $accentColor-dark;
+          }
+
+          span {
+            color: $textColor-dark;
+          }
+        }
+      }
+    }
+
+
+  .top {
+    .close-btn {
+      background-color: $accentColor-dark;
+      color: $itemColor-dark;
+    }
+  }
+
+  .bottom {
+    .link-container {
+      .title {
+        color: $textColor-dark;
+      }
+
+      .link {
+        &:hover {
+          background-color: $bgColor-dark;
+
+          color: $textColor-dark;
+          
+          span {
+            color: $itemColor-dark;
+          }
+        }
+
+        .icon {
+          color: $accentColor-dark;
+        }
+
+        span {
+          color: $textColor-dark;
+        }
+      }
+    }
+  }
+}
+
+// media query
+
+@media screen and (min-width: 320px) and (max-width: 990px) {
+  .hidden-sidebar {
+    display: block;
+    transition: all 0.3s ease;
+
+      &.hide {
+        transform: translateX(-100vw);
+      }
+
+      &.show {
+        transform: translateX(0);
+      }
+
+      .bottom {
+        padding: 10px;
+        flex: 1;
+
+
+        .link-container {
+          list-style-type: none;
+
+
+          .title {
+            display: none;
+          }
+
+          .link {
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background-color: $bgColor;
+
+              color: $textColor;
+              
+              span {
+                color: $itemColor;
+              }
+            }
+
+            .icon {
+              font-size: 18px;
+              color: $accentColor;
+            }
+
+            span {
+              font-size: 13px;
+              font-weight: 700;
+              color: $textColor;
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,25 +1,18 @@
 @use '../../scss/base' as *;
 
-.single-container {
-  background-color: $bgColor;
-  border-top-left-radius: 10px;
-  min-height: 100vh;
-  padding: 20px;
-
+.single-customer-container {
+  @include container;
+  
     .info-card {
       position: relative;
-      padding: 20px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
       border-radius: 10px;
-      background-color: $itemColor;
       margin-bottom: 15px;
+      padding: $container-padding;
+      box-shadow: $box-shadow;
+      background-color: $itemColor;
 
       .title {
-        font-weight: 700;
-        color: $textColor;
-        margin-bottom: 20px;
-        font-size: 20px;
+        @include title;
       }
 
       .info-button {
@@ -87,25 +80,23 @@
     }
 
     .user-chart {
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      box-shadow: $box-shadow;
       border-radius: 10px;
     }
 
     .table-container {
       padding: 20px;
       margin-top: 20px;
+      border-radius: 10px;
       background-color: $itemColor;
-      border-radius: 10px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      border-radius: 10px;
+      box-shadow: $box-shadow;
+
+      .table-wrapper {
+        overflow: auto;
+      }
   
       .title {
-        font-weight: 700;
-        color: $textColor;
-        margin-bottom: 30px;
-        font-size: 20px;
+        @include title;
       }
   }
 
@@ -113,7 +104,7 @@
 
 // dark theme
 
-.single-container.dark {
+.single-customer-container.dark {
   background-color: $bgColor-dark;
 
   .info-card {
@@ -149,8 +140,7 @@
   .table-container {
     border: 1px solid $textColor-dark;
     background-color: $itemColor-dark;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: $box-shadow;
 
     .title {
       font-weight: 700;
@@ -162,11 +152,11 @@
 // media query
 
 @media screen and (max-width: 600px) {
-  .single-container {
-    border-top-right-radius: 10px;
+  .single-customer-container {
+    @include container-border-radius;
 
     .info-card {
-  
+
       .info-button {
         padding: 2px;
         position: absolute;
@@ -189,12 +179,6 @@
             grid-template-columns: 1fr;
           }
         }
-      }
-    }
-  
-    .table-container {
-      .table-wrapper {
-        overflow: auto;
       }
     }
   }

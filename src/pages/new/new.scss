@@ -1,23 +1,16 @@
 @use '../../scss/base'as *;
 
 .new-container {
-  padding: 20px;
-  background-color: $bgColor;
-  border-top-left-radius: 10px;
-  min-height: 100vh;
+  @include container;
 
   .title {
-    color: $textColor;
-    margin-bottom: 20px;
-    font-weight: 700;
-    border-radius: 10px;
+    @include title;
   }
 
   .form-container {
     background-color: $itemColor;
     display: flex;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: $box-shadow;
     border-radius: 10px;
     padding: 10px;
 
@@ -135,12 +128,11 @@
   background-color: $bgColor-dark;
 
   .title {
-    margin-bottom: 20px;
+    color: $textColor-dark;
   }
 
   .form-container {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow:$box-shadow;
     background-color: $itemColor-dark;
 
     .form {
@@ -172,10 +164,10 @@
 
 @media screen and (max-width: 700px) {
   .new-container {
-    border-top-right-radius: 10px;
+    @include container-border-radius;
 
     .title {
-      font-size: 18px;
+      font-size: $title-sm;
     }
   
     .form-container {
@@ -219,11 +211,10 @@
 
 @media screen and (min-width: 701px) and (max-width: 990px) {
   .new-container {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    @include container-border-radius;
   
     .title {
-      font-size: 22px;
+      font-size: $title-m;
     }
   
     .form-container {

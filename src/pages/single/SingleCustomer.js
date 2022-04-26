@@ -19,7 +19,7 @@ export default function SingleCustomer() {
 
   return (
     <div
-      className={ theme === 'light' ? 'single-container' : 'single-container dark' }
+      className={ theme === 'light' ? 'single-customer-container' : 'single-customer-container dark' }
     >
       { !customer.photoUrl ? (
         <Spinner />

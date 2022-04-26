@@ -1,4 +1,3 @@
-import React from 'react';
 // styles
 import './list.scss';
 // tools
@@ -20,12 +19,13 @@ const List = (props) => {
     <div
       className={ theme === 'light' ? 'list-container' : 'list-container dark' }
     >
-      { console.log('List') }
       { isPending ? (
         <Spinner />
       ) : (
         <div className="table-container">
-          <h2 className="table-title">{ props.tableTitle }</h2>
+          <h2 className="table-title">
+            { props.tableTitle }
+          </h2>
           {
             !data && !isPending && (
               <div className='message-container'>
@@ -50,4 +50,4 @@ const List = (props) => {
   );
 };
 
-export default React.memo(List);
+export default List;

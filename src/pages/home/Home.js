@@ -32,7 +32,7 @@ export default function Home() {
       </div>
 
       <div className='table-container'>
-        <h3 className="title">Latest Transactions</h3>
+        <p className="title">Latest Transactions</p>
         <div className='table-wrapper'>
           <TransactionsTable />
         </div>

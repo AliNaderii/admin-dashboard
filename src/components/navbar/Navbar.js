@@ -2,6 +2,9 @@
 import './navbar.scss';
 // tools
 import { useTheme } from '../../hooks/useTheme';
+import { useState } from 'react';
+// components
+import HiddenSidebar from '../../components/hidden-sidebar/HiddenSidebar';
 // icons
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -9,25 +12,28 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import MenuIcon from '@mui/icons-material/Menu';
-// components
-import Sidebar from '../sidebar/Sidebar';
 
-export default function Navbar({ toggle, showMenu }) {
+const Navbar = () => {
   const { dispatch } = useTheme();
   const { theme } = useTheme();
+  const [showSidebar, setShowSidebar] = useState('hide');
 
   const changeTheme = () => {
     dispatch({ type: 'CHANGE_THEME' });
   };
 
+  const toggleSidebar = () => {
+    setShowSidebar(prevState => prevState === 'hide' ? 'show' : 'hide');
+  };
+
   return (
     <div className={ theme === 'light' ? 'navbar' : 'navbar dark' }>
-      { console.log('Nav') }
       <div className="wrapper">
-        <Sidebar
-          className={ showMenu ? `sidebar hidden show` : `sidebar hidden` }
+        <MenuIcon className='menu-icon' onClick={ toggleSidebar } />
+        <HiddenSidebar
+          showSidebar={ showSidebar }
+          toggleSidebar={ toggleSidebar }
         />
-        <MenuIcon className='menu-icon' onClick={ () => toggle(true) } />
         <div className="search">
           <input type="text" placeholder='Search...' />
           <SearchOutlinedIcon />
@@ -58,11 +64,9 @@ export default function Navbar({ toggle, showMenu }) {
           </div>
 
         </div>
-        {/* <div className="search">
-          <input type="text" placeholder='Search...' />
-          <SearchOutlinedIcon />
-        </div> */}
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;

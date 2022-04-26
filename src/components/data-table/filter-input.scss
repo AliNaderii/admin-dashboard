@@ -1,18 +1,9 @@
-$textColor: #605865;
-$itemColor: #f6f6f8;
-$bgColor: #e3e3e3;
-$accentColor: #c60021;
-
-$textColor-dark: #c5c6c7;
-$itemColor-dark: #1f2833;
-$bgColor-dark: #0b0c10;
-$accentColor-dark: #66fcf1;
+@use '../../scss/base' as *;
 
 .filter-container {
   border: 1px solid $bgColor;
   border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: $box-shadow;
   color: $textColor;
   margin-bottom: 15px;
   width: fit-content;
@@ -43,14 +34,10 @@ $accentColor-dark: #66fcf1;
 
 @media screen and (max-width: 600px) {
   .filter-container {
-    
     margin-bottom: 10px;
   
     input {
       font-size: 14px;
-      border: none;
-      outline: none;
-      background-color: transparent;
       padding: 5px 10px;
     }
   }

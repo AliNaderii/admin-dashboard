@@ -3,6 +3,7 @@
 .navbar {
   height: 50px;
   background-color: $itemColor;
+  position: relative;
 
   .wrapper {
     display: flex;
@@ -11,15 +12,15 @@
 
     .menu-icon {
       display: none;
+      color: $textColor;
     }
 
     .search {
       display: flex;
       align-items: center;
-      border: 1px solid $bgColor;
       border-radius: 5px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      border: 1px solid $bgColor;
+      box-shadow: $box-shadow;
       color: $textColor;
 
       input {
@@ -90,6 +91,9 @@
 .navbar.dark {
   background-color: $itemColor-dark;
   .wrapper {
+    .menu-icon {
+      color: $textColor-dark;
+    }
 
     .search {
       border: 1px solid $textColor-dark;
@@ -129,7 +133,6 @@
 
 @media screen and (max-width: 990px) {
   .navbar {
-    height: 50px;
     background-color: $itemColor;
   
     .wrapper {

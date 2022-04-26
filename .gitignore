@@ -29,3 +29,6 @@ yarn-error.log*
 /src/components/transactions-table/PaginatedTransactionsTable.js
 /src/components/transactions-table/RowSelection.js
 /src/components/transactions-table/SortedTransactionsTable.js
+
+# Local Netlify folder
+.netlify

@@ -2,11 +2,13 @@
 
 .login {
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   gap: 15px;
   justify-content: center;
   align-items: center;
+  background-color: $bgColor;
 
   .form {
     display: flex;
@@ -73,7 +75,7 @@
 // dark theme
 
 .login.dark {
-
+  background-color: $bgColor-dark;
   .form {
 
     .form-group {

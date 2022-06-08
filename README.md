@@ -1,4 +1,4 @@
-# Admin dashboard
+# Admin panel
 
 Admin dashboard is a simple admin panel for online shop managers. The main focus was to practice building the UI, so there is not much functionality involved.
 But there are some stuff you can do. Checkout the list of features to find out.
